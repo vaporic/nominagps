@@ -46,7 +46,13 @@ $(function() {
 
         var $this = $(this);
 
-        $.ajax({
+        //TMP
+        window.localStorage.setItem("auth", "true");
+
+        var dataRedirect = $this.attr('data-redirect');               
+        goToPage(dataRedirect);
+
+        /*$.ajax({
             type: 'post',
             url: base_url+'/login_app',
             data: {
@@ -77,7 +83,7 @@ $(function() {
                     goToPage(dataRedirect);
                 }
             },
-        });
+        });*/
         
         return false;
     });
