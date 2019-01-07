@@ -84,10 +84,10 @@
           <div style="padding-top: 20px; text-align: center;">
             Selecciona un empleado
 
-            <div style="padding: 20px;">
-              <input type="text" placeholder="Buscar empleado..." class="w-input">
+            <form style="padding: 20px;" id="form-empleados">
+              <input type="text" placeholder="Buscar empleado..." class="w-input" id="search">
               <input type="submit" value="BUSCAR" class="w-button action-button grey">
-            </div>
+            </form>
 
           </div>
 
@@ -149,8 +149,64 @@
       var goToPage = function(hrefPage){
         document.location = hrefPage;
       };
-
+      
       var sucursal_clave = location.search.split('sucursal=')[1];
+
+      $("#form-empleados").on("submit", function(e){
+          e.preventDefault();
+
+          $.ajax({
+            type: 'GET',
+            url: base_url+'/nomina_empleados?&search='+'sucursal:'+sucursal_clave+';nombre:'+$("#search").val()+'&searchFields=sucursal:=;nombre:=;apellido_paterno:=;apellido_materno:=&searchJoin=and',
+            beforeSend: function(){
+              $('.loading-mask').addClass('stop-loading');
+            },  
+            error: function(xhr, status, error) {
+                var err = JSON.parse(xhr.responseText);
+                if(!err.success){                          
+                    navigator.notification.alert(err.message, null, '', 'Cerrar');          
+                }
+            },
+            success: function(data) {
+              if(data.success){
+
+                console.log(data.data);
+
+                $.each(data.data, function(index, value){
+                    $("#list-hot").html("");
+
+                      $("#list-hot").append('<li class="list-item-new">\n' +
+                      '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
+                      '              <img src="https://via.placeholder.com/400x250" style="width: 100%;">\n' +
+                      '              <div class="text-new">\n' +
+                      '                <h2 class="title-new" style="text-transform: uppercase;">'+value.NOMBRE+' '+value.APELLIDO_PATERNO+' '+value.APELLIDO_MATERNO+'</h2>\n' +
+                      '                <p class="description-new">\n NO_INTERNO : ' +
+                                        value.NO_INTERNO+
+                      '                </p>\n' +
+                      '                <p class="description-new">\n EMPRESA : ' +
+                                        value.EMPRESA+
+                      '                </p>\n' +  
+                      '                </p>\n' +
+                      '                <p class="description-new">\n INMUEBLE : ' +
+                                        value.INMUEBLE+
+                      '                </p>\n' +  
+                      '                <p class="description-new">\n HORA ENTRADA : ' +
+                                        value.HORA_ENTRADA+
+                      '                </p>\n' +  
+                      '                <p class="description-new">\n HORA SALIDA : ' +
+                                        value.HORA_SALIDA+
+                      '                </p>\n' +  
+                      '                \n' +
+                      '                <a href="#"><i class="icon ion-checkmark"></i> Verificar Asistencia</a>\n' +
+                      '              </div>\n' +
+                      '            </a>\n' +
+                      '          </li>');
+                });            
+              }                    
+            }
+          });
+      });
+
 
       $.ajax({
         type: 'GET',
@@ -170,20 +226,6 @@
             console.log(data.data);
 
             $.each(data.data, function(index, value){
-
-              /*$("#list-hot").append('<li class="list-item-new">\n' +
-                  '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
-                  '              <img src="'+assets_url+value.featured_image+'" style="width: 100%;">\n' +
-                  '              <div class="text-new">\n' +
-                  '                <h2 class="title-new" style="text-transform: uppercase;">'+value.name+'</h2>\n' +
-                  '                <p class="description-new">\n' +
-                                    value.address+
-                  '                </p>\n' +
-                  '                \n' +
-                  '                <a href="'+value.google_map+'" target="_blank"><i class="icon ion-location"></i> Ver mapa</a>\n' +
-                  '              </div>\n' +
-                  '            </a>\n' +
-                  '          </li>');*/
 
                   $("#list-hot").append('<li class="list-item-new">\n' +
                   '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +

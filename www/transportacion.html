@@ -84,10 +84,10 @@
           <div style="padding-top: 20px; text-align: center;">
             Selecciona un inmueble
 
-            <div style="padding: 20px;">
-              <input type="text" placeholder="Buscar Inmueble..." class="w-input">
+            <form id="form-inmueble" style="padding: 20px;">
+              <input type="text" placeholder="Buscar Inmueble..." class="w-input" id="search">
               <input type="submit" value="BUSCAR" class="w-button action-button grey">
-            </div>
+            </form>
 
           </div>
 
@@ -149,6 +149,46 @@
       var goToPage = function(hrefPage){
         document.location = hrefPage;
       };
+
+      $("#form-inmueble").on("submit", function(e){
+          e.preventDefault();
+
+          $.ajax({
+          type: 'GET',
+          url: base_url+'/sucursales?search='+$("#search").val()+'&searchFields=clave:like;nombre:like',
+          beforeSend: function(){
+            $('.loading-mask').addClass('stop-loading');
+          },  
+          error: function(xhr, status, error) {
+              var err = JSON.parse(xhr.responseText);
+              if(!err.success){                          
+                  navigator.notification.alert(err.message, null, '', 'Cerrar');          
+              }
+          },
+          success: function(data) {
+            if(data.success){
+
+              console.log(data.data);
+              $("#list-hot").html("");
+              $.each(data.data, function(index, value){
+                    $("#list-hot").append('<li class="list-item-new">\n' +
+                    '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
+                    '              <img src="https://via.placeholder.com/400x150" style="width: 100%;">\n' +
+                    '              <div class="text-new">\n' +
+                    '                <h2 class="title-new" style="text-transform: uppercase;">'+value.NOMBRE+'</h2>\n' +
+                    '                <p class="description-new">\n CLAVE:' +
+                                      value.CLAVE+
+                    '                </p>\n' +
+                    '                \n' +
+                    '                <a href="empleados.html?sucursal='+value.CLAVE+'"><i class="icon ion-ios-people"></i> Ver Empleados</a>\n' +
+                    '              </div>\n' +
+                    '            </a>\n' +
+                    '          </li>');
+              });            
+            }                    
+          }
+        });
+      });
 
       $.ajax({
         type: 'GET',
