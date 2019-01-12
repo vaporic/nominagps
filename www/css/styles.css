@@ -853,11 +853,13 @@ a {
   background-image: url('../images/placeholder.png');
   background-size: cover;
 }
+.height-custom{
+  height: 380px;
+}
 .text-new {
   padding: 20px;
   border: 1px solid #e6e6e6;
   background-color: white;
-  height: 380px;
 }
 .text-new.no-borders {
   border-style: none;
