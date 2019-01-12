@@ -86,7 +86,7 @@ a {
   z-index: 5;
   height: 60px;
   padding-top: 15px;
-  background-color: #ea202d;
+  background-color: #000000;
   color: white;
 }
 .navbar.transparent {
@@ -381,7 +381,7 @@ a {
 
 .logo-login {
   height: 150px;
-  background-image: url('../images/logo.jpg');
+  background-image: url('../images/finger/LOGO_FONDOBLANCO.png');
   background-position: 50% 50%;
   background-size: 121px;
   background-repeat: no-repeat;
@@ -857,6 +857,7 @@ a {
   padding: 20px;
   border: 1px solid #e6e6e6;
   background-color: white;
+  height: 380px;
 }
 .text-new.no-borders {
   border-style: none;
@@ -1716,6 +1717,10 @@ input[type=text]:focus, textarea:focus {
 
 .bg-green{
   background: #26a39b;
+}
+
+.bg-black{
+  background: #000000;
 }
 
 .bg-blue{
