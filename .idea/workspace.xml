@@ -3,14 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="9887eade-820c-4671-aae1-f87d168f5a6a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/browser.json" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/browser.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-file-transfer/RELEASENOTES.md" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-file-transfer/RELEASENOTES.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-file-transfer/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-file-transfer/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-file-transfer/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-file-transfer/plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/cordova-plugin-file-transfer/tests/plugin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/cordova-plugin-file-transfer/tests/plugin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/plugins/fetch.json" beforeDir="false" afterPath="$PROJECT_DIR$/plugins/fetch.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/empleados.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/empleados.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/index.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,7 +15,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/empleados.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="518">
@@ -48,6 +40,15 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="727">
+              <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -56,6 +57,7 @@
       <find>foto</find>
       <find>foto...</find>
       <find>Foto...</find>
+      <find>cordova-plugin-file</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/www</dir>
@@ -69,6 +71,7 @@
       <list>
         <option value="$PROJECT_DIR$/www/index.html" />
         <option value="$PROJECT_DIR$/www/empleados.html" />
+        <option value="$PROJECT_DIR$/config.xml" />
       </list>
     </option>
   </component>
@@ -90,11 +93,6 @@
             <path>
               <item name="nominagps" type="b2602c69:ProjectViewProjectNode" />
               <item name="nominagps" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="nominagps" type="b2602c69:ProjectViewProjectNode" />
-              <item name="nominagps" type="462c0819:PsiDirectoryNode" />
-              <item name="www" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -131,12 +129,12 @@
       <option name="presentableId" value="Default" />
       <updated>1547594361689</updated>
       <workItem from="1547594362923" duration="175000" />
-      <workItem from="1547598418912" duration="1324000" />
+      <workItem from="1547598418912" duration="1975000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1499000" />
+    <option name="totallyTimeSpent" value="2150000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="27" width="1920" height="1053" extended-state="6" />
@@ -165,13 +163,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="562">
-          <caret line="48" column="36" selection-start-line="48" selection-start-column="36" selection-end-line="48" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/www/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
@@ -199,6 +190,24 @@
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/info.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor />
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="727">
+          <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
         </state>
       </provider>
     </entry>
