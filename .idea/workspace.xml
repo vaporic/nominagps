@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9887eade-820c-4671-aae1-f87d168f5a6a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9887eade-820c-4671-aae1-f87d168f5a6a" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -15,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/www/empleados.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="518">
-              <caret line="286" column="23" selection-start-line="286" selection-start-column="23" selection-end-line="286" selection-end-column="23" />
+            <state relative-caret-position="484">
+              <caret line="285" column="24" selection-start-line="285" selection-start-column="24" selection-end-line="285" selection-end-column="24" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#a#0;n#li#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#h2#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
@@ -36,15 +34,6 @@
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/config.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="50" lean-forward="true" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -71,8 +60,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/www/index.html" />
-        <option value="$PROJECT_DIR$/www/empleados.html" />
         <option value="$PROJECT_DIR$/config.xml" />
+        <option value="$PROJECT_DIR$/www/empleados.html" />
       </list>
     </option>
   </component>
@@ -94,6 +83,11 @@
             <path>
               <item name="nominagps" type="b2602c69:ProjectViewProjectNode" />
               <item name="nominagps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="nominagps" type="b2602c69:ProjectViewProjectNode" />
+              <item name="nominagps" type="462c0819:PsiDirectoryNode" />
+              <item name="www" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -130,12 +124,12 @@
       <option name="presentableId" value="Default" />
       <updated>1547594361689</updated>
       <workItem from="1547594362923" duration="175000" />
-      <workItem from="1547598418912" duration="2298000" />
+      <workItem from="1547598418912" duration="3056000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2473000" />
+    <option name="totallyTimeSpent" value="3231000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="27" width="1920" height="1053" extended-state="6" />
@@ -171,29 +165,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/www/empleados.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="518">
-          <caret line="286" column="23" selection-start-line="286" selection-start-column="23" selection-end-line="286" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#img#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#img#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#h2#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#1;n#a#0;n#div#1;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/info.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -214,6 +185,29 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
           <caret line="35" column="50" lean-forward="true" selection-start-line="35" selection-start-column="50" selection-end-line="35" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/empleados.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="285" column="24" selection-start-line="285" selection-start-column="24" selection-end-line="285" selection-end-column="24" />
+          <folding>
+            <element signature="n#style#0;n#img#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h2#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#1;n#a#0;n#div#1;n#div#0;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#0;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
