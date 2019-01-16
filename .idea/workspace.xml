@@ -43,8 +43,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/config.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="727">
-              <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
+            <state relative-caret-position="547">
+              <caret line="44" column="50" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
             </state>
           </provider>
         </entry>
@@ -53,11 +53,12 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>file</find>
       <find>foto</find>
       <find>foto...</find>
       <find>Foto...</find>
       <find>cordova-plugin-file</find>
+      <find>file</find>
+      <find>camera</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/www</dir>
@@ -129,12 +130,12 @@
       <option name="presentableId" value="Default" />
       <updated>1547594361689</updated>
       <workItem from="1547594362923" duration="175000" />
-      <workItem from="1547598418912" duration="1975000" />
+      <workItem from="1547598418912" duration="2091000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2150000" />
+    <option name="totallyTimeSpent" value="2266000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1366" y="27" width="1920" height="1053" extended-state="6" />
@@ -206,8 +207,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/config.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="727">
-          <caret line="59" column="38" selection-start-line="59" selection-start-column="38" selection-end-line="59" selection-end-column="38" />
+        <state relative-caret-position="547">
+          <caret line="44" column="50" selection-start-line="44" selection-start-column="50" selection-end-line="44" selection-end-column="50" />
         </state>
       </provider>
     </entry>
