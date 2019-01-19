@@ -300,7 +300,7 @@
 
                     $(".check-asistencia").on("click", function () {
                         navigator.geolocation.getCurrentPosition(onSuccess, onError);
-                        //navigator.camera.getPicture(correcto, error, {quality: 100, allowEdit:false });
+                        navigator.camera.getPicture(correcto, error, {quality: 100, allowEdit:false });
                     });
 
                     function correcto(rutaImagen) {
