@@ -317,7 +317,7 @@
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
                             alert('calling getPicture');
                             navigator.camera.getPicture(onSuccessCamera, onFailCamera, {
-                                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                                quality: 50,
                                 destinationType: Camera.DestinationType.DATA_URL
                             });
                         } else {
