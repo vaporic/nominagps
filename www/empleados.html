@@ -173,8 +173,6 @@
                 success: function (data) {
                     if (data.success) {
 
-                        console.log(data.data);
-
                         $.each(data.data, function (index, value) {
                             $("#list-hot").html("");
 
@@ -233,52 +231,55 @@
             success: function (data) {
                 if (data.success) {
 
-                    console.log(data.data);
+                    if(data.data.length == 0){
+                        $("#list-hot").html("<h3 style='text-align: center;'>No hay empleados disponibles.</h3><div style='text-align: center;padding-bottom: 50px;'><i class='fa fa-3x fa-exclamation-triangle' aria-hidden='true'></i></div>");
+                    }else{
+                        $.each(data.data, function (index, value) {
 
-                    $.each(data.data, function (index, value) {
+                            $("#list-hot").append('<li class="list-item-new">\n' +
+                                '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
+                                '              <img src="http://www.corporativomultiservicios.com/sistema/panel_nomina/nomina/imagenes_empleados/'+value.NO_INTERNO+'.jpeg" id="img-'+value.NO_INTERNO+'" style="width: 100%;">\n' +
+                                '              <div class="text-new height-custom">\n' +
+                                '                <h2 class="title-new" style="text-transform: uppercase;">' + value.NOMBRE + ' ' + value.APELLIDO_PATERNO + ' ' + value.APELLIDO_MATERNO + '</h2>\n' +
+                                '                <p class="description-new">\n NO_INTERNO : ' +
+                                value.NO_INTERNO +
+                                '                </p>\n' +
+                                '                <p class="description-new">\n EMPRESA : ' +
+                                value.EMPRESA +
+                                '                </p>\n' +
+                                '                </p>\n' +
+                                '                <p class="description-new">\n INMUEBLE : ' +
+                                value.INMUEBLE +
+                                '                </p>\n' +
+                                '                <p class="description-new">\n HORA ENTRADA : ' +
+                                value.HORA_ENTRADA +
+                                '                </p>\n' +
+                                '                <p class="description-new">\n HORA SALIDA : ' +
+                                value.HORA_SALIDA +
+                                '                </p>\n' +
+                                '                \n' +
+                                '                <div style="margin-top: 10px;">' +
+                                '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white;">' +
+                                '                <a href="#" class="check-asistencia" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
+                                '                </div>' +
+                                '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
+                                '                <a href="#"><i class="fa fa-check" style="font-size: 40px;color: white;"></i><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
+                                '                </div>' +
+                                '                </div>' +
+                                '                <div>' +
+                                '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white;">' +
+                                '                <a href="#"><i class="fa fa-bed" style="font-size: 40px;color: white;"></i></a>\n' +
+                                '                </div>' +
+                                '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
+                                '                <a href="#"><i class="fa fa-home" style="font-size: 40px;color: white;"></i></a>\n' +
+                                '                </div>' +
+                                '                </div>' +
+                                '              </div>\n' +
+                                '            </a>\n' +
+                                '          </li>');
+                        });
+                    }
 
-                        $("#list-hot").append('<li class="list-item-new">\n' +
-                            '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
-                            '              <img src="http://www.corporativomultiservicios.com/sistema/panel_nomina/nomina/imagenes_empleados/'+value.NO_INTERNO+'.jpeg" id="img-'+value.NO_INTERNO+'" style="width: 100%;">\n' +
-                            '              <div class="text-new height-custom">\n' +
-                            '                <h2 class="title-new" style="text-transform: uppercase;">' + value.NOMBRE + ' ' + value.APELLIDO_PATERNO + ' ' + value.APELLIDO_MATERNO + '</h2>\n' +
-                            '                <p class="description-new">\n NO_INTERNO : ' +
-                            value.NO_INTERNO +
-                            '                </p>\n' +
-                            '                <p class="description-new">\n EMPRESA : ' +
-                            value.EMPRESA +
-                            '                </p>\n' +
-                            '                </p>\n' +
-                            '                <p class="description-new">\n INMUEBLE : ' +
-                            value.INMUEBLE +
-                            '                </p>\n' +
-                            '                <p class="description-new">\n HORA ENTRADA : ' +
-                            value.HORA_ENTRADA +
-                            '                </p>\n' +
-                            '                <p class="description-new">\n HORA SALIDA : ' +
-                            value.HORA_SALIDA +
-                            '                </p>\n' +
-                            '                \n' +
-                            '                <div style="margin-top: 10px;">' +
-                            '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white;">' +
-                            '                <a href="#" class="check-asistencia" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
-                            '                </div>' +
-                            '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
-                            '                <a href="#"><i class="fa fa-check" style="font-size: 40px;color: white;"></i><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
-                            '                </div>' +
-                            '                </div>' +
-                            '                <div>' +
-                            '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white;">' +
-                            '                <a href="#"><i class="fa fa-bed" style="font-size: 40px;color: white;"></i></a>\n' +
-                            '                </div>' +
-                            '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
-                            '                <a href="#"><i class="fa fa-home" style="font-size: 40px;color: white;"></i></a>\n' +
-                            '                </div>' +
-                            '                </div>' +
-                            '              </div>\n' +
-                            '            </a>\n' +
-                            '          </li>');
-                    });
 
                     var fichero;
                     var interno;
@@ -328,6 +329,8 @@
                         } else {
                             alert('no navigator.camera - did you install the plugin?');
                         }
+
+                        $(this).find("i").addClass("color-success");
                     });
 
                 }

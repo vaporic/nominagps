@@ -1786,3 +1786,7 @@ input[type=text]:focus, textarea:focus {
 .active:after {
     content: "\2796"; /* Unicode character for "minus" sign (-) */
 }
+
+.color-success{
+  color: #2ecc71 !important;
+}
