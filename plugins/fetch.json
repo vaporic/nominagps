@@ -166,5 +166,13 @@
     },
     "is_top_level": true,
     "variables": {}
+  },
+  "cordova-plugin-native-spinner": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-plugin-native-spinner"
+    },
+    "is_top_level": true,
+    "variables": {}
   }
 }

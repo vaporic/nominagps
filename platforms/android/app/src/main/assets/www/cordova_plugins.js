@@ -385,6 +385,14 @@ module.exports = [
     "merges": [
       "window.plugins.spinnerDialog"
     ]
+  },
+  {
+    "id": "cordova-plugin-native-spinner.SpinnerDialog",
+    "file": "plugins/cordova-plugin-native-spinner/www/SpinnerDialog.js",
+    "pluginId": "cordova-plugin-native-spinner",
+    "clobbers": [
+      "SpinnerDialog"
+    ]
   }
 ];
 module.exports.metadata = 
@@ -401,7 +409,8 @@ module.exports.metadata =
   "cordova-plugin-dialogs": "1.2.1",
   "cordova-plugin-file": "6.0.1",
   "cordova-plugin-file-transfer": "1.7.1",
-  "cordova-plugin-spinner-dialog": "1.3.1"
+  "cordova-plugin-spinner-dialog": "1.3.1",
+  "cordova-plugin-native-spinner": "1.1.3"
 };
 // BOTTOM OF METADATA
 });

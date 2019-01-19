@@ -55,6 +55,10 @@
                         {
                             "xml": "<feature name=\"SpinnerDialog\"><param name=\"android-package\" value=\"hu.dpal.phonegap.plugins.SpinnerDialog\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"SpinnerDialog\"><param name=\"android-package\" value=\"com.greybax.spinnerdialog.SpinnerDialog\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -132,6 +136,9 @@
             "PACKAGE_NAME": "com.fingergps.app"
         },
         "cordova-plugin-spinner-dialog": {
+            "PACKAGE_NAME": "com.fingergps.app"
+        },
+        "cordova-plugin-native-spinner": {
             "PACKAGE_NAME": "com.fingergps.app"
         }
     },
@@ -522,6 +529,14 @@
             "merges": [
                 "window.plugins.spinnerDialog"
             ]
+        },
+        {
+            "id": "cordova-plugin-native-spinner.SpinnerDialog",
+            "file": "plugins/cordova-plugin-native-spinner/www/SpinnerDialog.js",
+            "pluginId": "cordova-plugin-native-spinner",
+            "clobbers": [
+                "SpinnerDialog"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -536,6 +551,7 @@
         "cordova-plugin-dialogs": "1.2.1",
         "cordova-plugin-file": "6.0.1",
         "cordova-plugin-file-transfer": "1.7.1",
-        "cordova-plugin-spinner-dialog": "1.3.1"
+        "cordova-plugin-spinner-dialog": "1.3.1",
+        "cordova-plugin-native-spinner": "1.1.3"
     }
 }

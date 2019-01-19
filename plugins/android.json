@@ -42,6 +42,9 @@
     },
     "cordova-plugin-spinner-dialog": {
       "PACKAGE_NAME": "com.fingergps.app"
+    },
+    "cordova-plugin-native-spinner": {
+      "PACKAGE_NAME": "com.fingergps.app"
     }
   },
   "dependent_plugins": {}
