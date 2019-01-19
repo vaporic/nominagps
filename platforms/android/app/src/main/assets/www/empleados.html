@@ -261,7 +261,7 @@
                             '                \n' +
                             '                <div style="margin-top: 10px;">' +
                             '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white;">' +
-                            '                <a href="#"><i class="fa fa-check check-asistencia" style="font-size: 40px;color: white;"></i></a>\n' +
+                            '                <a href="#" class="check-asistencia" data-interno="ok"><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
                             '                </div>' +
                             '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
                             '                <a href="#"><i class="fa fa-check" style="font-size: 40px;color: white;"></i><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
@@ -281,6 +281,7 @@
                     });
 
                     var fichero;
+                    var interno;
 
                     var onSuccess = function(position) {
                         window.plugins.spinnerDialog.hide();
@@ -301,9 +302,9 @@
                     }
 
                     function onSuccessCamera(imageData) {
+                        window.plugins.spinnerDialog.hide();
                         var image = document.getElementById('myImage');
                         image.src = "data:image/jpeg;base64," + imageData;
-                        window.plugins.spinnerDialog.hide();
                         alert(imageData);
                     }
 
@@ -314,6 +315,7 @@
 
                     $(".check-asistencia").on("click", function () {
                         window.plugins.spinnerDialog.show();
+                        interno = $(this).data("interno");
                         //navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
