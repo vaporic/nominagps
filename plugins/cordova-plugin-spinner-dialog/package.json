@@ -1,27 +1,24 @@
 {
-  "_from": "cordova-plugin-spinner-dialog",
+  "_from": "git+https://github.com/Paldom/SpinnerDialog.git",
   "_id": "cordova-plugin-spinner-dialog@1.3.1",
   "_inBundle": false,
-  "_integrity": "sha1-OooeskAY4d/L5NlRl1NoApje/Yk=",
+  "_integrity": "",
   "_location": "/cordova-plugin-spinner-dialog",
   "_phantomChildren": {},
   "_requested": {
-    "type": "tag",
-    "registry": true,
-    "raw": "cordova-plugin-spinner-dialog",
-    "name": "cordova-plugin-spinner-dialog",
-    "escapedName": "cordova-plugin-spinner-dialog",
-    "rawSpec": "",
-    "saveSpec": null,
-    "fetchSpec": "latest"
+    "type": "git",
+    "raw": "https://github.com/Paldom/SpinnerDialog.git",
+    "rawSpec": "https://github.com/Paldom/SpinnerDialog.git",
+    "saveSpec": "git+https://github.com/Paldom/SpinnerDialog.git",
+    "fetchSpec": "https://github.com/Paldom/SpinnerDialog.git",
+    "gitCommittish": null
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/cordova-plugin-spinner-dialog/-/cordova-plugin-spinner-dialog-1.3.1.tgz",
-  "_shasum": "3a8a1eb24018e1dfcbe4d9519753680298defd89",
-  "_spec": "cordova-plugin-spinner-dialog",
+  "_resolved": "git+https://github.com/Paldom/SpinnerDialog.git#a9276f54f1c155dffe7fd0e240b6e5d9a153c9a8",
+  "_spec": "https://github.com/Paldom/SpinnerDialog.git",
   "_where": "/Users/hugo/Desktop/nomina",
   "author": {
     "name": "Domonkos Pal",
