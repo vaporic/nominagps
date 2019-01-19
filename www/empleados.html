@@ -239,7 +239,7 @@
 
                         $("#list-hot").append('<li class="list-item-new">\n' +
                             '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
-                            '              <img src="https://via.placeholder.com/400x150" style="width: 100%;">\n' +
+                            '              <img src="https://via.placeholder.com/400x150" id="img-'+value.NO_INTERNO+'" style="width: 100%;">\n' +
                             '              <div class="text-new height-custom">\n' +
                             '                <h2 class="title-new" style="text-transform: uppercase;">' + value.NOMBRE + ' ' + value.APELLIDO_PATERNO + ' ' + value.APELLIDO_MATERNO + '</h2>\n' +
                             '                <p class="description-new">\n NO_INTERNO : ' +
@@ -261,7 +261,7 @@
                             '                \n' +
                             '                <div style="margin-top: 10px;">' +
                             '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white;">' +
-                            '                <a href="#" class="check-asistencia" data-interno="ok"><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
+                            '                <a href="#" class="check-asistencia" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
                             '                </div>' +
                             '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
                             '                <a href="#"><i class="fa fa-check" style="font-size: 40px;color: white;"></i><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
@@ -303,7 +303,7 @@
 
                     function onSuccessCamera(imageData) {
                         window.plugins.spinnerDialog.hide();
-                        var image = document.getElementById('myImage');
+                        var image = document.getElementById('img-'+interno);
                         image.src = "data:image/jpeg;base64," + imageData;
                         alert(imageData);
                     }
@@ -316,6 +316,7 @@
                     $(".check-asistencia").on("click", function () {
                         window.plugins.spinnerDialog.show();
                         interno = $(this).data("interno");
+                        alert(interno);
                         //navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
