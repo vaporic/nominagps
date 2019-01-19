@@ -283,7 +283,7 @@
                     var fichero;
 
                     var onSuccess = function(position) {
-                        SpinnerDialog.hide();
+                        window.plugins.spinnerDialog.hide();
                         alert('Latitude: '          + position.coords.latitude          + '\n' +
                             'Longitude: '         + position.coords.longitude         + '\n' +
                             'Altitude: '          + position.coords.altitude          + '\n' +
@@ -295,13 +295,13 @@
                     };
 
                     function onError(error) {
-                        SpinnerDialog.hide();
+                        window.plugins.spinnerDialog.hide();
                         alert('code: '    + error.code    + '\n' +
                             'message: ' + error.message + '\n');
                     }
 
                     $(".check-asistencia").on("click", function () {
-                        SpinnerDialog.show();
+                        window.plugins.spinnerDialog.show();
                         navigator.geolocation.getCurrentPosition(onSuccess, onError);
                         navigator.camera.getPicture(correcto, error, {quality: 100, allowEdit:false });
                     });
