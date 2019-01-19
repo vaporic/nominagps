@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9887eade-820c-4671-aae1-f87d168f5a6a" name="Default Changelist" comment="">
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platforms/android/android.json" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/android.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/empleados.html" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/android/app/src/main/assets/www/empleados.html" afterDir="false" />
@@ -10,6 +11,9 @@
       <change beforePath="$PROJECT_DIR$/platforms/ios/www/empleados.html" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/ios/www/empleados.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platforms/ios/www/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/platforms/ios/www/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/www/empleados.html" beforeDir="false" afterPath="$PROJECT_DIR$/www/empleados.html" afterDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/config.xml" afterDir="false" />
+>>>>>>> 348def8be0845052bee9fcac97304451db22d64b
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -23,7 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< HEAD
       <file leaf-file-name="empleados.html" pinned="false" current-in-tab="true">
+=======
+      <file pinned="false" current-in-tab="false">
+>>>>>>> 348def8be0845052bee9fcac97304451db22d64b
         <entry file="file://$PROJECT_DIR$/www/empleados.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="449">
@@ -48,6 +56,15 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="742">
+              <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -56,8 +73,8 @@
       <find>foto...</find>
       <find>Foto...</find>
       <find>cordova-plugin-file</find>
-      <find>camera</find>
       <find>file</find>
+      <find>camera</find>
     </findStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/www</dir>
@@ -214,14 +231,22 @@
       <option name="presentableId" value="Default" />
       <updated>1547594361689</updated>
       <workItem from="1547594362923" duration="175000" />
+<<<<<<< HEAD
       <workItem from="1547598418912" duration="3056000" />
       <workItem from="1547713047340" duration="518000" />
       <workItem from="1547912094219" duration="161000" />
+=======
+      <workItem from="1547598418912" duration="3673000" />
+>>>>>>> 348def8be0845052bee9fcac97304451db22d64b
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="3910000" />
+=======
+    <option name="totallyTimeSpent" value="3848000" />
+>>>>>>> 348def8be0845052bee9fcac97304451db22d64b
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="731" extended-state="0" />
@@ -296,6 +321,7 @@
         <state relative-caret-position="-1440" />
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/info.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -306,6 +332,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> 348def8be0845052bee9fcac97304451db22d64b
     <entry file="file://$PROJECT_DIR$/www/empleados.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="449">
@@ -326,6 +354,13 @@
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#i#0;n#a#0;n#div#1;n#div#1;n#div#0;n#a#0;n#li#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="742">
+          <caret line="58" column="40" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
         </state>
       </provider>
     </entry>
