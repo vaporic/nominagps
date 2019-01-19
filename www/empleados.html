@@ -301,13 +301,14 @@
                     }
 
                     function onSuccessCamera(imageData) {
-                        alert('succsess');
                         var image = document.getElementById('myImage');
                         image.src = "data:image/jpeg;base64," + imageData;
-                        alert(image.src);
+                        window.plugins.spinnerDialog.hide();
+                        alert(imageData);
                     }
 
                     function onFailCamera(message) {
+                        window.plugins.spinnerDialog.hide();
                         alert('Failed because: ' + message);
                     }
 
