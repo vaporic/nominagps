@@ -286,14 +286,14 @@
 
                     var onSuccess = function(position) {
                         window.plugins.spinnerDialog.hide();
-                        alert('Latitude: '          + position.coords.latitude          + '\n' +
+                        navigator.notification.alert('Latitude: '          + position.coords.latitude          + '\n' +
                             'Longitude: '         + position.coords.longitude         + '\n' +
                             'Altitude: '          + position.coords.altitude          + '\n' +
                             'Accuracy: '          + position.coords.accuracy          + '\n' +
                             'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
                             'Heading: '           + position.coords.heading           + '\n' +
                             'Speed: '             + position.coords.speed             + '\n' +
-                            'Timestamp: '         + position.timestamp                + '\n');
+                            'Timestamp: '         + position.timestamp                + '\n', null, '', 'Cerrar');
                     };
 
                     function onError(error) {
@@ -306,7 +306,11 @@
                         window.plugins.spinnerDialog.hide();
                         var image = document.getElementById('img-'+interno);
                         image.src = "data:image/jpeg;base64," + imageData;
-                        //alert(imageData);
+
+                        // TODO: Guardar Foto
+
+                        // Get Location
+                        navigator.geolocation.getCurrentPosition(onSuccess, onError);
                     }
 
                     function onFailCamera(message) {
@@ -317,8 +321,6 @@
                     $(".check-asistencia").on("click", function () {
                         window.plugins.spinnerDialog.show();
                         interno = $(this).data("interno");
-                        //alert(interno);
-                        //navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
                             //alert('calling getPicture');
