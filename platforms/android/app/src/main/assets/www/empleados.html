@@ -297,30 +297,30 @@
 
                     function onError(error) {
                         window.plugins.spinnerDialog.hide();
-                        alert('code: '    + error.code    + '\n' +
-                            'message: ' + error.message + '\n');
+                        navigator.notification.alert('code: '    + error.code    + '\n' +
+                            'message: ' + error.message + '\n', null, '', 'Cerrar');
                     }
 
                     function onSuccessCamera(imageData) {
                         window.plugins.spinnerDialog.hide();
                         var image = document.getElementById('img-'+interno);
                         image.src = "data:image/jpeg;base64," + imageData;
-                        alert(imageData);
+                        //alert(imageData);
                     }
 
                     function onFailCamera(message) {
                         window.plugins.spinnerDialog.hide();
-                        alert('Failed because: ' + message);
+                        navigator.notification.alert('Failed because: ' + message, null, '', 'Cerrar');
                     }
 
                     $(".check-asistencia").on("click", function () {
                         window.plugins.spinnerDialog.show();
                         interno = $(this).data("interno");
-                        alert(interno);
+                        //alert(interno);
                         //navigator.geolocation.getCurrentPosition(onSuccess, onError);
 
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
-                            alert('calling getPicture');
+                            //alert('calling getPicture');
                             navigator.camera.getPicture(onSuccessCamera, onFailCamera, {
                                 quality: 50,
                                 destinationType: Camera.DestinationType.DATA_URL
