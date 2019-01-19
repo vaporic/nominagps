@@ -300,20 +300,30 @@
                             'message: ' + error.message + '\n');
                     }
 
+                    function onSuccessCamera(imageData) {
+                        alert('succsess');
+                        var image = document.getElementById('myImage');
+                        image.src = "data:image/jpeg;base64," + imageData;
+                    }
+
+                    function onFailCamera(message) {
+                        alert('Failed because: ' + message);
+                    }
+
                     $(".check-asistencia").on("click", function () {
                         window.plugins.spinnerDialog.show();
-                        navigator.geolocation.getCurrentPosition(onSuccess, onError);
-                        navigator.camera.getPicture(correcto, error, {quality: 100, allowEdit:false });
+                        //navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+                        if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
+                            alert('calling getPicture');
+                            navigator.camera.getPicture(onSuccessCamera, onFailCamera, {
+                                sourceType: Camera.PictureSourceType.PHOTOLIBRARY,
+                                destinationType: Camera.DestinationType.DATA_URL
+                            });
+                        } else {
+                            alert('no navigator.camera - did you install the plugin?');
+                        }
                     });
-
-                    function correcto(rutaImagen) {
-                        fichero = rutaImagen;
-                        alert(fichero);
-                    }
-
-                    function error(message) {
-                        alert("Error "+message);
-                    }
 
                 }
             }
