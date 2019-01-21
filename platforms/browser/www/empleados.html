@@ -94,12 +94,14 @@
                 </div>
 
                 <div class="news-mask"></div>
-                <div class="news-container" style="margin-top: 30px;">
-                    <ul class="w-clearfix list-news" id="list-hot">
+                <div class="news-container" style="margin-top: 30px;width: 100%;">
+                    <div class="loader" style="text-align: center;border: 1px solid:red;width: 100%;">
+                        <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
+                        <br>
+                        <small>Cargando...</small>
+                    </div>
 
-                        <li class="list-item-new" style="text-align: center;">
-                            <i class="fa fa-circle-o-notch fa-spin fa-3x fa-fw"></i>
-                        </li>
+                    <ul class="w-clearfix list-news" id="list-hot">
 
 
                         <!--li class="list-item-new">
@@ -232,6 +234,7 @@
                 if (!err.success) {
                     navigator.notification.alert(err.message, null, '', 'Cerrar');
                 }
+                $('.loader').hide();
             },
             success: function (data) {
                 if (data.success) {
@@ -285,20 +288,22 @@
                         });
                     }
 
+                    $('.loader').hide();
 
                     var fichero;
                     var interno;
 
                     var onSuccess = function(position) {
                         window.plugins.spinnerDialog.hide();
-                        navigator.notification.alert('Latitude: '          + position.coords.latitude          + '\n' +
+                        /*navigator.notification.alert('Latitude: '          + position.coords.latitude          + '\n' +
                             'Longitude: '         + position.coords.longitude         + '\n' +
                             'Altitude: '          + position.coords.altitude          + '\n' +
                             'Accuracy: '          + position.coords.accuracy          + '\n' +
                             'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
                             'Heading: '           + position.coords.heading           + '\n' +
                             'Speed: '             + position.coords.speed             + '\n' +
-                            'Timestamp: '         + position.timestamp                + '\n', null, '', 'Cerrar');
+                            'Timestamp: '         + position.timestamp                + '\n', null, '', 'Cerrar');*/
+                        return position.coords.latitude;
                     };
 
                     function onError(error) {
@@ -308,14 +313,17 @@
                     }
 
                     function onSuccessCamera(imageData) {
-                        window.plugins.spinnerDialog.hide();
+                        //window.plugins.spinnerDialog.hide();
                         var image = document.getElementById('img-'+interno);
                         image.src = "data:image/jpeg;base64," + imageData;
 
-                        // TODO: Guardar Foto
-
                         // Get Location
-                        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                        $res = navigator.geolocation.getCurrentPosition(onSuccess, onError);
+
+                        alert($res);
+
+                        // TODO: Guardar Datos
+                        $(this).find("i").addClass("color-success");
                     }
 
                     function onFailCamera(message) {
@@ -336,8 +344,6 @@
                         } else {
                             alert('no navigator.camera - did you install the plugin?');
                         }
-
-                        $(this).find("i").addClass("color-success");
                     });
 
                 }
