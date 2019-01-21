@@ -221,7 +221,6 @@
             url: base_url + '/nomina_empleados?search=' + sucursal_clave + '&searchFields=sucursal:like',
             beforeSend: function () {
                 $('.loading-mask').addClass('stop-loading');
-                window.plugins.spinnerDialog.show();
             },
             error: function (xhr, status, error) {
                 var err = JSON.parse(xhr.responseText);
@@ -279,8 +278,6 @@
                                 '            </a>\n' +
                                 '          </li>');
                         });
-
-                        window.plugins.spinnerDialog.hide();
                     }
 
 
