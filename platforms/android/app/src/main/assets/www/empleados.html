@@ -292,9 +292,10 @@
 
                     var fichero;
                     var interno;
+                    var coordenadas;
+                    var photoNew;
 
                     var onSuccess = function(position) {
-                        window.plugins.spinnerDialog.hide();
                         /*navigator.notification.alert('Latitude: '          + position.coords.latitude          + '\n' +
                             'Longitude: '         + position.coords.longitude         + '\n' +
                             'Altitude: '          + position.coords.altitude          + '\n' +
@@ -303,7 +304,14 @@
                             'Heading: '           + position.coords.heading           + '\n' +
                             'Speed: '             + position.coords.speed             + '\n' +
                             'Timestamp: '         + position.timestamp                + '\n', null, '', 'Cerrar');*/
-                        return position.coords.latitude;
+                        window.plugins.spinnerDialog.hide();
+
+                        coordenadas = position.coords.latitude+','+position.coords.longitude;
+
+                        alert(coordenadas);
+
+                        $(this).find("i").addClass("color-success");
+                        // TODO: Guardar Datos
                     };
 
                     function onError(error) {
@@ -316,14 +324,10 @@
                         //window.plugins.spinnerDialog.hide();
                         var image = document.getElementById('img-'+interno);
                         image.src = "data:image/jpeg;base64," + imageData;
+                        photoNew = image.src;
 
                         // Get Location
-                        $res = navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
-                        alert($res);
-
-                        // TODO: Guardar Datos
-                        $(this).find("i").addClass("color-success");
+                        navigator.geolocation.getCurrentPosition(onSuccess, onError);
                     }
 
                     function onFailCamera(message) {
