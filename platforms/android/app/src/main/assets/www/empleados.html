@@ -294,6 +294,7 @@
                     var interno;
                     var coordenadas;
                     var photoNew;
+                    var $this;
 
                     var onSuccess = function(position) {
                         /*navigator.notification.alert('Latitude: '          + position.coords.latitude          + '\n' +
@@ -309,8 +310,9 @@
                         coordenadas = position.coords.latitude+','+position.coords.longitude;
 
                         alert(coordenadas);
+                        alert(photoNew);
 
-                        $(this).find("i").addClass("color-success");
+                        $this.find("i").addClass("color-success");
                         // TODO: Guardar Datos
                     };
 
@@ -337,6 +339,7 @@
 
                     $(".check-asistencia").on("click", function () {
                         window.plugins.spinnerDialog.show();
+                        $this = $(this);
                         interno = $(this).data("interno");
 
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
