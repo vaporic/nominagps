@@ -220,7 +220,6 @@
             type: 'GET',
             url: base_url + '/nomina_empleados?search=' + sucursal_clave + '&searchFields=sucursal:like',
             beforeSend: function () {
-                window.plugins.spinnerDialog.show();
                 $('.loading-mask').addClass('stop-loading');
             },
             error: function (xhr, status, error) {
