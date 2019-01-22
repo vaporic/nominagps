@@ -248,7 +248,9 @@
                                 '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
                                 '              <img src="'+value.photo+'" id="img-'+value.NO_INTERNO+'" style="width: 100%;">\n' +
                                 '              <div class="text-new height-custom">\n' +
-                                '                <h2 class="title-new" style="text-transform: uppercase;">' + value.NOMBRE + ' ' + value.APELLIDO_PATERNO + ' ' + value.APELLIDO_MATERNO + '</h2>\n' +
+                                '                <h2 class="title-new" style="text-transform: uppercase;" id="name-'+value.NO_INTERNO+'">' + value.NOMBRE + ' ' + value.APELLIDO_PATERNO + ' ' + value.APELLIDO_MATERNO + '</h2>\n' +
+                                '               <input type="hidden" id="id-'+value.NO_INTERNO+'" value="'+value.ID_NOMINAE+'">'+
+                                '               <input type="hidden" id="sucursal-'+value.NO_INTERNO+'" value="'+value.CLAVE_SUCURSAL+'">'+
                                 '                <p class="description-new">\n NO_INTERNO : ' +
                                 value.NO_INTERNO +
                                 '                </p>\n' +
@@ -295,6 +297,9 @@
                     var coordenadas;
                     var photoNew;
                     var $this;
+                    var $nombre;
+                    var $id;
+                    var $sucursal;
 
                     var onSuccess = function(position) {
                         /*navigator.notification.alert('Latitude: '          + position.coords.latitude          + '\n' +
@@ -308,17 +313,20 @@
 
                         coordenadas = position.coords.latitude+','+position.coords.longitude;
 
-                        alert(coordenadas);
+                        //alert(coordenadas);
                         //alert(photoNew);
-                        /*var dataSend = {
-                            'NOMBRE_EMPLEADO': 'HUGO E',
+                        var dataSend = {
+                            'NOMBRE_EMPLEADO': $nombre,
                             'JUSTIFICACION': 'NONE',
                             'NOTAS': 'NONE',
                             'USR_ASIS2': 'NONE',
                             'NOTAS2': 'NONE',
                             'OBSERVACIONES': 'NONE',
                             'COORDENADAS': coordenadas,
-                            //'PHOTO': photoNew
+                            'PHOTO': photoNew,
+                            'ID_NOMINAE': $id,
+                            'CLAVE_SUCURSAL': $sucursal,
+                            'ASISTENCIA': 1
                         };
             
                         // TODO: Guardar Datos
@@ -340,7 +348,7 @@
                                     window.plugins.spinnerDialog.hide();
                                 }
                             }
-                        });*/
+                        });
                     };
 
                     function onError(error) {
@@ -352,6 +360,10 @@
                     function onSuccessCamera(imageData) {
                         //window.plugins.spinnerDialog.hide();
                         var image = document.getElementById('img-'+interno);
+                        $nombre = $('#name-'+interno).text();
+                        $id = $('#id-'+interno).val();
+                        $sucursal = $('#id-'+interno).val();
+
                         image.src = "data:image/jpeg;base64," + imageData;
                         photoNew = image.src;
 
