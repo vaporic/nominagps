@@ -328,8 +328,8 @@
                                 }
                             },
                             success: function (data) {
-                                if (data.success) {
-                                    console.log(data);
+                                alert(data);
+                                if (data.success) {                                    
                                     $this.find("i").addClass("color-success");
                                     window.plugins.spinnerDialog.hide();
                                 }
