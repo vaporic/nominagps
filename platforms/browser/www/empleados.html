@@ -310,15 +310,15 @@
 
                         //alert(coordenadas);
                         //alert(photoNew);
-                        var data = {
+                        var dataSend = {
                             'coordenadas': coordenadas,
-                            'photo': photoNew
+                            //'photo': photoNew
                         };
             
                         // TODO: Guardar Datos
                         $.ajax({
                             type: 'POST',
-                            data: data,
+                            data: dataSend,
                             url: base_url + '/registro_asistencias',                            
                             error: function (xhr, status, error) {
                                 var err = JSON.parse(xhr.responseText);
