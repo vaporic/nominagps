@@ -304,16 +304,37 @@
                             'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
                             'Heading: '           + position.coords.heading           + '\n' +
                             'Speed: '             + position.coords.speed             + '\n' +
-                            'Timestamp: '         + position.timestamp                + '\n', null, '', 'Cerrar');*/
-                        window.plugins.spinnerDialog.hide();
+                            'Timestamp: '         + position.timestamp                + '\n', null, '', 'Cerrar');*/                        
 
                         coordenadas = position.coords.latitude+','+position.coords.longitude;
 
-                        alert(coordenadas);
-                        alert(photoNew);
-
-                        $this.find("i").addClass("color-success");
+                        //alert(coordenadas);
+                        //alert(photoNew);
+                        var data = {
+                            'coordenadas': coordenadas,
+                            'photo': photoNew
+                        };
+            
                         // TODO: Guardar Datos
+                        $.ajax({
+                            type: 'POST',
+                            data: data,
+                            url: base_url + '/registro_asistencias',                            
+                            error: function (xhr, status, error) {
+                                var err = JSON.parse(xhr.responseText);
+                                if (!err.success) {
+                                    navigator.notification.alert(err.message, null, '', 'Cerrar');
+                                    window.plugins.spinnerDialog.hide();
+                                }
+                            },
+                            success: function (data) {
+                                if (data.success) {
+                                    console.log(data);
+                                    $this.find("i").addClass("color-success");
+                                    window.plugins.spinnerDialog.hide();
+                                }
+                            }
+                        });
                     };
 
                     function onError(error) {
