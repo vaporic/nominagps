@@ -315,9 +315,9 @@
 
                         //alert(coordenadas);
                         //alert(photoNew);
-                        alert($nombre);
-                        alert($id);
-                        alert($sucursal);
+                        //alert($nombre);
+                        //alert($id);
+                        //alert($sucursal);
                         var dataSend = {
                             'NOMBRE_EMPLEADO': $nombre,
                             'JUSTIFICACION': 'NONE',
@@ -326,7 +326,7 @@
                             'NOTAS2': 'NONE',
                             'OBSERVACIONES': 'NONE',
                             'COORDENADAS': coordenadas,
-                            'PHOTO': photoNew,
+                            'FOTO': photoNew,
                             'ID_NOMINAE': $id,
                             'CLAVE_SUCURSAL': $sucursal,
                             'ASISTENCIA': 1
@@ -345,10 +345,13 @@
                                 }
                             },
                             success: function (data) {
-                                alert(data);
+                                //alert(data);
                                 if (data.success) {                                    
                                     $this.find("i").addClass("color-success");
                                     window.plugins.spinnerDialog.hide();
+                                    navigator.notification.alert('La asistencia se tomo correctamente.', null, '', 'Cerrar');                                    
+                                }else{
+                                    navigator.notification.alert('Error, ya se registro asistencia previamente.', null, '', 'Cerrar');                                   
                                 }
                             }
                         });
