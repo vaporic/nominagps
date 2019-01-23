@@ -249,8 +249,8 @@
                                 '              <img src="'+value.photo+'" id="img-'+value.NO_INTERNO+'" style="width: 100%;">\n' +
                                 '              <div class="text-new height-custom">\n' +
                                 '                <h2 class="title-new" style="text-transform: uppercase;" id="name-'+value.NO_INTERNO+'">' + value.NOMBRE + ' ' + value.APELLIDO_PATERNO + ' ' + value.APELLIDO_MATERNO + '</h2>\n' +
-                                '               <input type="hidden" id="id-'+value.NO_INTERNO+'" value="'+value.ID_NOMINAE+'">'+
-                                '               <input type="hidden" id="sucursal-'+value.NO_INTERNO+'" value="'+value.CLAVE_SUCURSAL+'">'+
+                                '               <input type="hidden" id="id-'+value.NO_INTERNO+'" value="'+value.ID_EMPLEADO+'">'+
+                                '               <input type="hidden" id="sucursal-'+value.NO_INTERNO+'" value="'+sucursal_clave+'">'+
                                 '                <p class="description-new">\n NO_INTERNO : ' +
                                 value.NO_INTERNO +
                                 '                </p>\n' +
@@ -365,7 +365,7 @@
                         var image = document.getElementById('img-'+interno);
                         $nombre = $('#name-'+interno).text();
                         $id = $('#id-'+interno).val();
-                        $sucursal = $('#id-'+interno).val();
+                        $sucursal = $('#sucursal-'+interno).val();
 
                         image.src = "data:image/jpeg;base64," + imageData;
                         photoNew = image.src;
