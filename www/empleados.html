@@ -243,6 +243,15 @@
                         $("#list-hot").html("<h3 style='text-align: center;'>No hay empleados disponibles.</h3><div style='text-align: center;padding-bottom: 50px;'><i class='fa fa-3x fa-exclamation-triangle' aria-hidden='true'></i></div>");
                     }else{
                         $.each(data.data, function (index, value) {
+                             
+                            var src_check = "#";                            
+                            var class_check = "check-asistencia";                            
+                            var class_color_check = "";
+                            if(value.asistencia_actual){
+                                src_check = "javascript: void(0);";
+                                class_check = "";
+                                class_color_check = "color-success";
+                            }
 
                             $("#list-hot").append('<li class="list-item-new">\n' +
                                 '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
@@ -270,7 +279,7 @@
                                 '                \n' +
                                 '                <div style="margin-top: 10px;">' +
                                 '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white;">' +
-                                '                <a href="#" class="check-asistencia" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
+                                '                <a href="'+src_check+'" class="'+class_check+'" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check '+class_color_check+'" style="font-size: 40px;color: white;"></i></a>\n' +
                                 '                </div>' +
                                 '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
                                 '                <a href="#"><i class="fa fa-check" style="font-size: 40px;color: white;"></i><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
@@ -342,6 +351,8 @@
                                 //alert(data);
                                 if (data.success) {                                    
                                     $this.find("i").addClass("color-success");
+                                    $this.removeClass("check-asistencia");
+                                    $this.attr('href', 'javascript: void(0);');
                                     window.plugins.spinnerDialog.hide();
                                     navigator.notification.alert('La asistencia se tomo correctamente.', null, '', 'Cerrar');                                    
                                 }else{
