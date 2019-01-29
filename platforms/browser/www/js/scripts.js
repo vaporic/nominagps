@@ -82,6 +82,8 @@ $(function() {
 
                     var dataRedirect = $this.attr('data-redirect');               
                     goToPage(dataRedirect);
+                }else{                    
+                    navigator.notification.alert(data.message, null, 'Error', 'Cerrar');    
                 }
             },
         });
