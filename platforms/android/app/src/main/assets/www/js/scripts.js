@@ -3,7 +3,7 @@ document.addEventListener("touchstart", function(){}, true);
 $(function() {
     'use strict';
 
-    var base_url = 'http://api.icem2018.com/api/v1';
+    var base_url = 'http://apinomina.softcoders.com.mx/api';
 
     var dataSplash = $('.page-content').attr('data-splash');
     var dataRedirect = $('.page-content').attr('data-redirect');
@@ -47,16 +47,17 @@ $(function() {
         var $this = $(this);
 
         //TMP
-        window.localStorage.setItem("auth", "true");
+        //window.localStorage.setItem("auth", "true");
 
-        var dataRedirect = $this.attr('data-redirect');               
-        goToPage(dataRedirect);
+        //var dataRedirect = $this.attr('data-redirect');               
+        //goToPage(dataRedirect);
 
-        /*$.ajax({
+        $.ajax({
             type: 'post',
             url: base_url+'/login_app',
             data: {
                 'email' : $("#email-field").val(),
+                'password' : $("#password-field").val(),
             },            
             error: function(xhr, status, error) {
                 var err = JSON.parse(xhr.responseText);
@@ -83,7 +84,7 @@ $(function() {
                     goToPage(dataRedirect);
                 }
             },
-        });*/
+        });
         
         return false;
     });
