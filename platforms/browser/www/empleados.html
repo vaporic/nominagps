@@ -247,11 +247,16 @@
                             var src_check = "#";                            
                             var class_check = "check-asistencia";                            
                             var class_color_check = "";
+                        
                             if(value.asistencia_actual){
                                 src_check = "javascript: void(0);";
                                 class_check = "";
                                 class_color_check = "color-success";
                             }
+
+                            var src_check_doble = "#";                            
+                            var class_check_doble = "check-asistencia-doble";                            
+                            var class_color_check_doble = "";
 
                             $("#list-hot").append('<li class="list-item-new">\n' +
                                 '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
@@ -282,7 +287,7 @@
                                 '                <a href="'+src_check+'" class="'+class_check+'" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check '+class_color_check+'" style="font-size: 40px;color: white;"></i></a>\n' +
                                 '                </div>' +
                                 '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
-                                '                <a href="#"><i class="fa fa-check" style="font-size: 40px;color: white;"></i><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
+                                '                <a href="'+src_check_doble+'" class="'+class_check_doble+'" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check '+class_color_check_doble+'" style="font-size: 40px;color: white;"></i><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
                                 '                </div>' +
                                 '                </div>' +
                                 '                <div>' +            
@@ -314,13 +319,7 @@
                             'Speed: '             + position.coords.speed             + '\n' +
                             'Timestamp: '         + position.timestamp                + '\n', null, '', 'Cerrar');*/                        
 
-                        coordenadas = position.coords.latitude+','+position.coords.longitude;
-
-                        //alert(coordenadas);
-                        //alert(photoNew);
-                        //alert($nombre);
-                        //alert($id);
-                        //alert($sucursal);
+                        coordenadas = position.coords.latitude+','+position.coords.longitude;                
                         var dataSend = {
                             'NOMBRE_EMPLEADO': $nombre,
                             'JUSTIFICACION': 'NONE',
@@ -354,7 +353,7 @@
                                     $this.removeClass("check-asistencia");
                                     $this.attr('href', 'javascript: void(0);');
                                     window.plugins.spinnerDialog.hide();
-                                    navigator.notification.alert('La asistencia se tomo correctamente.', null, '', 'Cerrar');                                    
+                                    navigator.notification.alert('La asistencia se aplico correctamente.', null, '', 'Cerrar');                                    
                                 }else{
                                     navigator.notification.alert('Error, ya se registro asistencia previamente.', null, '', 'Cerrar');                                   
                                 }
@@ -388,6 +387,22 @@
                     }
 
                     $(".check-asistencia").on("click", function () {
+                        window.plugins.spinnerDialog.show();
+                        $this = $(this);
+                        interno = $(this).data("interno");
+
+                        if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
+                            //alert('calling getPicture');
+                            navigator.camera.getPicture(onSuccessCamera, onFailCamera, {
+                                quality: 50,
+                                destinationType: Camera.DestinationType.DATA_URL
+                            });
+                        } else {
+                            alert('no navigator.camera - did you install the plugin?');
+                        }
+                    });
+
+                    $(".check-asistencia-doble").on("click", function () {
                         window.plugins.spinnerDialog.show();
                         $this = $(this);
                         interno = $(this).data("interno");
