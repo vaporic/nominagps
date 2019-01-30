@@ -3,7 +3,7 @@ document.addEventListener("touchstart", function(){}, true);
 $(function() {
     'use strict';
 
-    var base_url = 'http://apinomina.softcoders.com.mx/api';
+    var base_url = 'http://gps.somostusideas.info/api';
 
     var dataSplash = $('.page-content').attr('data-splash');
     var dataRedirect = $('.page-content').attr('data-redirect');
