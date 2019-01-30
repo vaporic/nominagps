@@ -314,7 +314,7 @@
                     var $nombre;
                     var $id;
                     var $sucursal;
-                    var $doble;
+                    var $doble = false;
 
                     var onSuccess = function(position) {
                         /*navigator.notification.alert('Latitude: '          + position.coords.latitude          + '\n' +
@@ -329,7 +329,7 @@
                         coordenadas = position.coords.latitude+','+position.coords.longitude;                
 
                         alert($doble);
-                        if($doble == 'true'){
+                        if($doble){
                             // TODO: Update asistencia doble
                             var dataSend = {
                                 'NOMBRE_EMPLEADO': $nombre,
@@ -440,7 +440,7 @@
                         window.plugins.spinnerDialog.show();
                         $this = $(this);
                         interno = $(this).data("interno");
-                        $doble = $(this).data("doble");
+                        $doble = false;
 
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
                             //alert('calling getPicture');
@@ -457,7 +457,7 @@
                         window.plugins.spinnerDialog.show();
                         $this = $(this);
                         interno = $(this).data("interno");
-                        $doble = $(this).data("doble");
+                        $doble = true;
 
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
                             //alert('calling getPicture');
