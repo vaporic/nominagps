@@ -311,6 +311,7 @@
                     var coordenadas;
                     var photoNew;
                     var $this;
+                    var $this2;
                     var $nombre;
                     var $id;
                     var $sucursal;
@@ -342,9 +343,7 @@
                                 'FOTO': photoNew,
                                 'ID_NOMINAE': $id,
                                 'CLAVE_SUCURSAL': $sucursal
-                            };
-
-                            alert('ok');
+                            };                            
                                             
                             $.ajax({
                                 type: 'POST',
@@ -359,9 +358,9 @@
                                 },
                                 success: function (data) {                                    
                                     if (data.success) {                                    
-                                        $this.find("i").addClass("color-success");
-                                        $this.removeClass("check-asistencia");
-                                        $this.attr('href', 'javascript: void(0);');
+                                        $this2.find("i").addClass("color-success");
+                                        $this2.removeClass("check-asistencia");
+                                        $this2.attr('href', 'javascript: void(0);');
                                         window.plugins.spinnerDialog.hide();
                                         navigator.notification.alert('La asistencia se aplicó correctamente.', null, '', 'Cerrar');                                    
                                     }else{
@@ -400,7 +399,7 @@
                                     //alert(data);
                                     if (data.success) {                                    
                                         $this.find("i").addClass("color-success");
-                                        $this.removeClass("check-asistencia");
+                                        $this.removeClass("check-asistencia-doble");
                                         $this.attr('href', 'javascript: void(0);');
                                         window.plugins.spinnerDialog.hide();
                                         navigator.notification.alert('La asistencia se aplicó correctamente.', null, '', 'Cerrar');                                    
@@ -456,7 +455,7 @@
 
                     $(".check-asistencia-doble").on("click", function () {
                         window.plugins.spinnerDialog.show();
-                        $this = $(this);
+                        $this2 = $(this);
                         interno = $(this).data("interno");
                         $doble = true;
 
