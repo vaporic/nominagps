@@ -258,6 +258,12 @@
                             var class_check_doble = "check-asistencia-doble";                            
                             var class_color_check_doble = "";
 
+                            if(value.asistencia_actual_doble){
+                                src_check_doble = "javascript: void(0);";
+                                class_check_doble = "";
+                                class_color_check_doble = "color-success";
+                            }
+
                             $("#list-hot").append('<li class="list-item-new">\n' +
                                 '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
                                 '              <img src="'+value.photo+'" id="img-'+value.NO_INTERNO+'" style="width: 100%;">\n' +
@@ -351,15 +357,15 @@
                                 },
                                 success: function (data) {
                                     alert(data);
-                                    /*if (data.success) {                                    
+                                    if (data.success) {                                    
                                         $this.find("i").addClass("color-success");
                                         $this.removeClass("check-asistencia");
                                         $this.attr('href', 'javascript: void(0);');
                                         window.plugins.spinnerDialog.hide();
-                                        navigator.notification.alert('La asistencia se aplico correctamente.', null, '', 'Cerrar');                                    
+                                        navigator.notification.alert('La asistencia se aplicó correctamente.', null, '', 'Cerrar');                                    
                                     }else{
-                                        navigator.notification.alert('Error, ya se registro asistencia previamente.', null, '', 'Cerrar');                                   
-                                    }*/
+                                        navigator.notification.alert('Error, se tienen que registrar asistencia previamente.', null, '', 'Cerrar');                                   
+                                    }
                                 }
                             });
                         }else{                            
@@ -396,7 +402,7 @@
                                         $this.removeClass("check-asistencia");
                                         $this.attr('href', 'javascript: void(0);');
                                         window.plugins.spinnerDialog.hide();
-                                        navigator.notification.alert('La asistencia se aplico correctamente.', null, '', 'Cerrar');                                    
+                                        navigator.notification.alert('La asistencia se aplicó correctamente.', null, '', 'Cerrar');                                    
                                     }else{
                                         navigator.notification.alert('Error, ya se registro asistencia previamente.', null, '', 'Cerrar');                                   
                                     }
