@@ -323,46 +323,86 @@
                         coordenadas = position.coords.latitude+','+position.coords.longitude;                
 
                         alert($doble);
-
-                        var dataSend = {
-                            'NOMBRE_EMPLEADO': $nombre,
-                            'JUSTIFICACION': 'NONE',
-                            'NOTAS': 'NONE',
-                            'USR_ASIS2': 'NONE',
-                            'NOTAS2': 'NONE',
-                            'OBSERVACIONES': 'NONE',
-                            'COORDENADAS': coordenadas,
-                            'FOTO': photoNew,
-                            'ID_NOMINAE': $id,
-                            'CLAVE_SUCURSAL': $sucursal,
-                            'ASISTENCIA': 1
-                        };
-            
-                        // TODO: Guardar Datos
-                        $.ajax({
-                            type: 'POST',
-                            data: dataSend,
-                            url: base_url + '/registro_asistencias',                            
-                            error: function (xhr, status, error) {
-                                window.plugins.spinnerDialog.hide();
-                                var err = JSON.parse(xhr.responseText);
-                                if (!err.success) {
-                                    navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
-                                }
-                            },
-                            success: function (data) {
-                                //alert(data);
-                                if (data.success) {                                    
-                                    $this.find("i").addClass("color-success");
-                                    $this.removeClass("check-asistencia");
-                                    $this.attr('href', 'javascript: void(0);');
+                        if($doble == 'true'){
+                            // TODO: Update asistencia doble
+                            var dataSend = {
+                                'NOMBRE_EMPLEADO': $nombre,
+                                'JUSTIFICACION': 'NONE',
+                                'NOTAS': 'NONE',
+                                'USR_ASIS2': 'NONE',
+                                'NOTAS2': 'NONE',
+                                'OBSERVACIONES': 'NONE',
+                                'COORDENADAS': coordenadas,
+                                'FOTO': photoNew,
+                                'ID_NOMINAE': $id,
+                                'CLAVE_SUCURSAL': $sucursal
+                            };
+                                            
+                            $.ajax({
+                                type: 'POST',
+                                data: dataSend,
+                                url: base_url + '/registro_asistencias_doble',                            
+                                error: function (xhr, status, error) {
                                     window.plugins.spinnerDialog.hide();
-                                    navigator.notification.alert('La asistencia se aplico correctamente.', null, '', 'Cerrar');                                    
-                                }else{
-                                    navigator.notification.alert('Error, ya se registro asistencia previamente.', null, '', 'Cerrar');                                   
+                                    var err = JSON.parse(xhr.responseText);
+                                    if (!err.success) {
+                                        navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
+                                    }
+                                },
+                                success: function (data) {
+                                    alert(data);
+                                    /*if (data.success) {                                    
+                                        $this.find("i").addClass("color-success");
+                                        $this.removeClass("check-asistencia");
+                                        $this.attr('href', 'javascript: void(0);');
+                                        window.plugins.spinnerDialog.hide();
+                                        navigator.notification.alert('La asistencia se aplico correctamente.', null, '', 'Cerrar');                                    
+                                    }else{
+                                        navigator.notification.alert('Error, ya se registro asistencia previamente.', null, '', 'Cerrar');                                   
+                                    }*/
                                 }
-                            }
-                        });
+                            });
+                        }else{                            
+                            var dataSend = {
+                                'NOMBRE_EMPLEADO': $nombre,
+                                'JUSTIFICACION': 'NONE',
+                                'NOTAS': 'NONE',
+                                'USR_ASIS2': 'NONE',
+                                'NOTAS2': 'NONE',
+                                'OBSERVACIONES': 'NONE',
+                                'COORDENADAS': coordenadas,
+                                'FOTO': photoNew,
+                                'ID_NOMINAE': $id,
+                                'CLAVE_SUCURSAL': $sucursal,
+                                'ASISTENCIA': 1
+                            };
+                
+                            // TODO: Guardar Datos
+                            $.ajax({
+                                type: 'POST',
+                                data: dataSend,
+                                url: base_url + '/registro_asistencias',                            
+                                error: function (xhr, status, error) {
+                                    window.plugins.spinnerDialog.hide();
+                                    var err = JSON.parse(xhr.responseText);
+                                    if (!err.success) {
+                                        navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
+                                    }
+                                },
+                                success: function (data) {
+                                    //alert(data);
+                                    if (data.success) {                                    
+                                        $this.find("i").addClass("color-success");
+                                        $this.removeClass("check-asistencia");
+                                        $this.attr('href', 'javascript: void(0);');
+                                        window.plugins.spinnerDialog.hide();
+                                        navigator.notification.alert('La asistencia se aplico correctamente.', null, '', 'Cerrar');                                    
+                                    }else{
+                                        navigator.notification.alert('Error, ya se registro asistencia previamente.', null, '', 'Cerrar');                                   
+                                    }
+                                }
+                            });
+                        }                        
                     };
 
                     function onError(error) {
