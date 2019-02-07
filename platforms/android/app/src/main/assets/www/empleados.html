@@ -293,7 +293,7 @@
                                 '                <a href="'+src_check+'" class="'+class_check+'" data-doble="false" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check '+class_color_check+'" style="font-size: 40px;color: white;"></i></a>\n' +
                                 '                </div>' +
                                 '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
-                                '                <a href="'+src_check_doble+'" class="'+class_check_doble+'" data-doble="true" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check '+class_color_check_doble+'" style="font-size: 40px;color: white;"></i><i class="fa fa-check" style="font-size: 40px;color: white;"></i></a>\n' +
+                                '                <a href="'+src_check_doble+'" class="'+class_check_doble+'" data-doble="true" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check '+class_color_check_doble+'" style="font-size: 40px;color: white;"></i><i class="fa fa-check '+class_color_check_doble+'" style="font-size: 40px;color: white;"></i></a>\n' +
                                 '                </div>' +
                                 '                </div>' +
                                 '                <div>' +            
@@ -311,10 +311,11 @@
                     var coordenadas;
                     var photoNew;
                     var $this;
+                    var $this2;
                     var $nombre;
                     var $id;
                     var $sucursal;
-                    var $doble;
+                    var $doble = false;
 
                     var onSuccess = function(position) {
                         /*navigator.notification.alert('Latitude: '          + position.coords.latitude          + '\n' +
@@ -329,9 +330,9 @@
                         coordenadas = position.coords.latitude+','+position.coords.longitude;                
 
                         //alert($doble);
-                        if($doble == 'true'){
+                        if($doble){
                             // TODO: Update asistencia doble
-                            var dataSend = {
+                            var dataSend2 = {
                                 'NOMBRE_EMPLEADO': $nombre,
                                 'JUSTIFICACION': 'NONE',
                                 'NOTAS': 'NONE',
@@ -342,11 +343,11 @@
                                 'FOTO': photoNew,
                                 'ID_NOMINAE': $id,
                                 'CLAVE_SUCURSAL': $sucursal
-                            };
+                            };                            
                                             
                             $.ajax({
                                 type: 'POST',
-                                data: dataSend,
+                                data: dataSend2,
                                 url: base_url + '/registro_asistencias_doble',                            
                                 error: function (xhr, status, error) {
                                     window.plugins.spinnerDialog.hide();
@@ -355,12 +356,11 @@
                                         navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
                                     }
                                 },
-                                success: function (data) {
-                                    alert(data);
+                                success: function (data) {                                    
                                     if (data.success) {                                    
-                                        $this.find("i").addClass("color-success");
-                                        $this.removeClass("check-asistencia");
-                                        $this.attr('href', 'javascript: void(0);');
+                                        $this2.find("i").addClass("color-success");
+                                        $this2.removeClass("check-asistencia");
+                                        $this2.attr('href', 'javascript: void(0);');
                                         window.plugins.spinnerDialog.hide();
                                         navigator.notification.alert('La asistencia se aplicó correctamente.', null, '', 'Cerrar');                                    
                                     }else{
@@ -399,7 +399,7 @@
                                     //alert(data);
                                     if (data.success) {                                    
                                         $this.find("i").addClass("color-success");
-                                        $this.removeClass("check-asistencia");
+                                        $this.removeClass("check-asistencia-doble");
                                         $this.attr('href', 'javascript: void(0);');
                                         window.plugins.spinnerDialog.hide();
                                         navigator.notification.alert('La asistencia se aplicó correctamente.', null, '', 'Cerrar');                                    
@@ -440,7 +440,7 @@
                         window.plugins.spinnerDialog.show();
                         $this = $(this);
                         interno = $(this).data("interno");
-                        $doble = $(this).data("doble");
+                        $doble = false;
 
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
                             //alert('calling getPicture');
@@ -455,9 +455,9 @@
 
                     $(".check-asistencia-doble").on("click", function () {
                         window.plugins.spinnerDialog.show();
-                        $this = $(this);
+                        $this2 = $(this);
                         interno = $(this).data("interno");
-                        $doble = $(this).data("doble");
+                        $doble = true;
 
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
                             //alert('calling getPicture');

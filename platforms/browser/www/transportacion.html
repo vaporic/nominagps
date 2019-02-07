@@ -143,7 +143,7 @@
   <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
   <script>
     $(document).on("ready", function(){
-      var base_url = 'http://apinomina.softcoders.com.mx/api';
+      var base_url = 'http://gps.somostusideas.info/api';
       var assets_url = 'https://icem2018.com/';     
       var icem_customer = window.localStorage.getItem("icem_customer");                 
       var goToPage = function(hrefPage){
@@ -155,7 +155,7 @@
 
           $.ajax({
           type: 'GET',
-          url: base_url+'/sucursales?search='+$("#search").val()+'&searchFields=clave:like;nombre:like',
+          url: base_url+'/inmuebles?search='+$("#search").val()+'&searchFields=NOINMUEBLE:like;RAZONSOCIAL:like',
           beforeSend: function(){
             $('.loading-mask').addClass('stop-loading');
           },  
@@ -173,14 +173,14 @@
               $.each(data.data, function(index, value){
                     $("#list-hot").append('<li class="list-item-new">\n' +
                     '            <a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1">\n' +
-                    '              <img src="https://via.placeholder.com/400x150" style="width: 100%;">\n' +
+                    '              <img src="https://via.placeholder.com/400x250/000000/FFFFFF/?text=FINGER%20GPS" style="width: 100%;">\n' +
                     '              <div class="text-new">\n' +
-                    '                <h2 class="title-new" style="text-transform: uppercase;">'+value.NOMBRE+'</h2>\n' +
+                    '                <h2 class="title-new" style="text-transform: uppercase;">'+value.RAZONSOCIAL+'</h2>\n' +
                     '                <p class="description-new">\n CLAVE:' +
-                                      value.CLAVE+
+                                      value.NOINMUEBLE+
                     '                </p>\n' +
                     '                \n' +
-                    '                <a href="empleados.html?sucursal='+value.CLAVE+'"><i class="icon ion-ios-people"></i> Ver Empleados</a>\n' +
+                    '                <a href="empleados.html?sucursal='+value.NOINMUEBLE+'"><i class="icon ion-ios-people"></i> Ver Empleados</a>\n' +
                     '              </div>\n' +
                     '            </a>\n' +
                     '          </li>');
@@ -192,7 +192,7 @@
 
       $.ajax({
         type: 'GET',
-        url: base_url+'/sucursales',
+        url: base_url+'/inmuebles',
         beforeSend: function(){
           $('.loading-mask').addClass('stop-loading');
         },  
@@ -227,12 +227,12 @@
                   '            <a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1">\n' +
                   '              <img src="https://via.placeholder.com/400x250/000000/FFFFFF/?text=FINGER%20GPS" style="width: 100%;">\n' +
                   '              <div class="text-new">\n' +
-                  '                <h2 class="title-new" style="text-transform: uppercase;">'+value.NOMBRE+'</h2>\n' +
+                  '                <h2 class="title-new" style="text-transform: uppercase;">'+value.RAZONSOCIAL+'</h2>\n' +
                   '                <p class="description-new">\n CLAVE:' +
-                                    value.CLAVE+
+                                    value.NOINMUEBLE+
                   '                </p>\n' +
                   '                \n' +
-                  '                <a href="empleados.html?sucursal='+value.CLAVE+'"><i class="icon ion-ios-people"></i> Ver Empleados</a>\n' +
+                  '                <a href="empleados.html?sucursal='+value.NOINMUEBLE+'"><i class="icon ion-ios-people"></i> Ver Empleados</a>\n' +
                   '              </div>\n' +
                   '            </a>\n' +
                   '          </li>');
