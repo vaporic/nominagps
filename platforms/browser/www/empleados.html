@@ -340,7 +340,7 @@
                                 data: dataSend2,
                                 url: base_url + '/registro_asistencias_doble',                            
                                 error: function (xhr, status, error) {
-                                    window.plugins.spinnerDialog.hide();
+                                    //window.plugins.spinnerDialog.hide();
                                     var err = JSON.parse(xhr.responseText);
                                     if (!err.success) {
                                         navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
@@ -352,7 +352,7 @@
                                         $this2.find("i").addClass("color-success");
                                         $this2.removeClass("check-asistencia");
                                         $this2.attr('href', 'javascript: void(0);');
-                                        window.plugins.spinnerDialog.hide();
+                                        //window.plugins.spinnerDialog.hide();
                                         navigator.notification.alert('La asistencia se aplicó correctamente.', null, '', 'Cerrar');                                    
                                     }else{
                                         navigator.notification.alert('Error, se tienen que registrar asistencia previamente.', null, '', 'Cerrar');                                   
@@ -380,7 +380,7 @@
                                 data: dataSend,
                                 url: base_url + '/registro_asistencias',                            
                                 error: function (xhr, status, error) {
-                                    window.plugins.spinnerDialog.hide();
+                                    //window.plugins.spinnerDialog.hide();
                                     var err = JSON.parse(xhr.responseText);
                                     if (!err.success) {
                                         navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
@@ -392,7 +392,7 @@
                                         $this.find("i").addClass("color-success");
                                         $this.removeClass("check-asistencia-doble");
                                         $this.attr('href', 'javascript: void(0);');
-                                        window.plugins.spinnerDialog.hide();
+                                        //window.plugins.spinnerDialog.hide();
                                         navigator.notification.alert('La asistencia se aplicó correctamente.', null, '', 'Cerrar');                                    
                                     }else{
                                         navigator.notification.alert('Error, ya se registro asistencia previamente.', null, '', 'Cerrar');                                   
@@ -403,7 +403,7 @@
                     };
 
                     function onError(error) {
-                        window.plugins.spinnerDialog.hide();
+                        //window.plugins.spinnerDialog.hide();
                         navigator.notification.alert('code: '    + error.code    + '\n' +
                             'message: ' + error.message + '\n', null, '', 'Cerrar');
                     }
@@ -423,12 +423,12 @@
                     }
 
                     function onFailCamera(message) {
-                        window.plugins.spinnerDialog.hide();
+                        //window.plugins.spinnerDialog.hide();
                         navigator.notification.alert('Failed because: ' + message, null, '', 'Cerrar');
                     }
 
                     $(".check-asistencia").on("click", function () {
-                        window.plugins.spinnerDialog.show();
+                        //window.plugins.spinnerDialog.show();
                         $this = $(this);
                         interno = $(this).data("interno");
                         $doble = false;
@@ -445,7 +445,7 @@
                     });
 
                     $(".check-asistencia-doble").on("click", function () {
-                        window.plugins.spinnerDialog.show();
+                        //window.plugins.spinnerDialog.show();
                         $this2 = $(this);
                         interno = $(this).data("interno");
                         $doble = true;
