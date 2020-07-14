@@ -19,8 +19,6 @@
        under the License.
 */
 
-/* jshint sub:true */
-
 var shelljs = require('shelljs');
 var child_process = require('child_process');
 var Q = require('q');
@@ -39,17 +37,6 @@ function forgivingWhichSync (cmd) {
     } catch (e) {
         return '';
     }
-}
-
-function tryCommand (cmd, errMsg, catchStderr) {
-    var d = Q.defer();
-    child_process.exec(cmd, function (err, stdout, stderr) {
-        if (err) d.reject(new CordovaError(errMsg));
-        // Sometimes it is necessary to return an stderr instead of stdout in case of success, since
-        // some commands prints theirs output to stderr instead of stdout. 'javac' is the example
-        else d.resolve((catchStderr ? stderr : stdout).trim());
-    });
-    return d.promise;
 }
 
 module.exports.isWindows = function () {
@@ -99,16 +86,8 @@ module.exports.get_gradle_wrapper = function () {
     var i = 0;
     var foundStudio = false;
     var program_dir;
-    if (module.exports.isDarwin()) {
-        program_dir = fs.readdirSync('/Applications');
-        while (i < program_dir.length && !foundStudio) {
-            if (program_dir[i].startsWith('Android Studio')) {
-                // TODO: Check for a specific Android Studio version, make sure it's not Canary
-                androidStudioPath = path.join('/Applications', program_dir[i], 'Contents', 'gradle');
-                foundStudio = true;
-            } else { ++i; }
-        }
-    } else if (module.exports.isWindows()) {
+    // OK, This hack only works on Windows, not on Mac OS or Linux.  We will be deleting this eventually!
+    if (module.exports.isWindows()) {
 
         var result = child_process.spawnSync(path.join(__dirname, 'getASPath.bat'));
         // console.log('result.stdout =' + result.stdout.toString());
@@ -176,7 +155,7 @@ module.exports.check_java = function () {
             if (javacPath) {
                 // OS X has a command for finding JAVA_HOME.
                 var find_java = '/usr/libexec/java_home';
-                var default_java_error_msg = 'Failed to find \'JAVA_HOME\' environment variable. Try setting setting it manually.';
+                var default_java_error_msg = 'Failed to find \'JAVA_HOME\' environment variable. Try setting it manually.';
                 if (fs.existsSync(find_java)) {
                     return superspawn.spawn(find_java).then(function (stdout) {
                         process.env['JAVA_HOME'] = stdout.trim();
@@ -215,19 +194,24 @@ module.exports.check_java = function () {
             }
         }
     }).then(function () {
-        var msg =
-            'Failed to run "javac -version", make sure that you have a JDK installed.\n' +
-            'You can get it from: http://www.oracle.com/technetwork/java/javase/downloads.\n';
-        if (process.env['JAVA_HOME']) {
-            msg += 'Your JAVA_HOME is invalid: ' + process.env['JAVA_HOME'] + '\n';
-        }
-        // We use tryCommand with catchStderr = true, because
-        // javac writes version info to stderr instead of stdout
-        return tryCommand('javac -version', msg, true).then(function (output) {
-            // Let's check for at least Java 8, and keep it future proof so we can support Java 10
-            var match = /javac ((?:1\.)(?:[8-9]\.)(?:\d+))|((?:1\.)(?:[1-9]\d+\.)(?:\d+))/i.exec(output);
-            return match && match[1];
-        });
+        return Q.denodeify(child_process.exec)('javac -version')
+            .then(outputs => {
+                // outputs contains two entries: stdout and stderr
+                // Java <= 8 writes version info to stderr, Java >= 9 to stdout
+                const output = outputs.join('').trim();
+                const match = /javac\s+([\d.]+)/i.exec(output);
+                return match && match[1];
+            }, () => {
+                var msg =
+                'Failed to run "javac -version", make sure that you have a JDK version 8 installed.\n' +
+                'You can get it from the following location:\n' +
+                'https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html';
+                if (process.env['JAVA_HOME']) {
+                    msg += '\n\n';
+                    msg += 'Your JAVA_HOME is invalid: ' + process.env['JAVA_HOME'];
+                }
+                throw new CordovaError(msg);
+            });
     });
 };
 
@@ -247,6 +231,14 @@ module.exports.check_android = function () {
         // First ensure ANDROID_HOME is set
         // If we have no hints (nothing in PATH), try a few default locations
         if (!hasAndroidHome && !androidCmdPath && !adbInPath && !avdmanagerInPath) {
+            if (process.env['ANDROID_SDK_ROOT']) {
+                // Quick fix to set ANDROID_HOME according to ANDROID_SDK_ROOT
+                // if ANDROID_HOME is **not** defined and
+                // ANDROID_SDK_ROOT **is** defined
+                // according to environment variables as documented in:
+                // https://developer.android.com/studio/command-line/variables
+                maybeSetAndroidHome(path.join(process.env['ANDROID_SDK_ROOT']));
+            }
             if (module.exports.isWindows()) {
                 // Android Studio 1.0 installer
                 maybeSetAndroidHome(path.join(process.env['LOCALAPPDATA'], 'Android', 'sdk'));
@@ -281,7 +273,7 @@ module.exports.check_android = function () {
                 if (path.basename(parentDir) === 'tools' || fs.existsSync(path.join(grandParentDir, 'tools', 'android'))) {
                     maybeSetAndroidHome(grandParentDir);
                 } else {
-                    throw new CordovaError('Failed to find \'ANDROID_HOME\' environment variable. Try setting setting it manually.\n' +
+                    throw new CordovaError('Failed to find \'ANDROID_HOME\' environment variable. Try setting it manually.\n' +
                         'Detected \'android\' command at ' + parentDir + ' but no \'tools\' directory found near.\n' +
                         'Try reinstall Android SDK or update your PATH to include valid path to SDK' + path.sep + 'tools directory.');
                 }
@@ -292,7 +284,7 @@ module.exports.check_android = function () {
                 if (path.basename(parentDir) === 'platform-tools') {
                     maybeSetAndroidHome(grandParentDir);
                 } else {
-                    throw new CordovaError('Failed to find \'ANDROID_HOME\' environment variable. Try setting setting it manually.\n' +
+                    throw new CordovaError('Failed to find \'ANDROID_HOME\' environment variable. Try setting it manually.\n' +
                         'Detected \'adb\' command at ' + parentDir + ' but no \'platform-tools\' directory found near.\n' +
                         'Try reinstall Android SDK or update your PATH to include valid path to SDK' + path.sep + 'platform-tools directory.');
                 }
@@ -303,14 +295,14 @@ module.exports.check_android = function () {
                 if (path.basename(parentDir) === 'bin' && path.basename(grandParentDir) === 'tools') {
                     maybeSetAndroidHome(path.dirname(grandParentDir));
                 } else {
-                    throw new CordovaError('Failed to find \'ANDROID_HOME\' environment variable. Try setting setting it manually.\n' +
+                    throw new CordovaError('Failed to find \'ANDROID_HOME\' environment variable. Try setting it manually.\n' +
                         'Detected \'avdmanager\' command at ' + parentDir + ' but no \'tools' + path.sep + 'bin\' directory found near.\n' +
                         'Try reinstall Android SDK or update your PATH to include valid path to SDK' + path.sep + 'tools' + path.sep + 'bin directory.');
                 }
             }
         }
         if (!process.env['ANDROID_HOME']) {
-            throw new CordovaError('Failed to find \'ANDROID_HOME\' environment variable. Try setting setting it manually.\n' +
+            throw new CordovaError('Failed to find \'ANDROID_HOME\' environment variable. Try setting it manually.\n' +
                 'Failed to find \'android\' command in your \'PATH\'. Try update your \'PATH\' to include path to valid SDK directory.');
         }
         if (!fs.existsSync(process.env['ANDROID_HOME'])) {
@@ -371,15 +363,19 @@ module.exports.check_android_target = function (originalError) {
 // Returns a promise.
 module.exports.run = function () {
     return Q.all([this.check_java(), this.check_android()]).then(function (values) {
-        console.log('ANDROID_HOME=' + process.env['ANDROID_HOME']);
-        console.log('JAVA_HOME=' + process.env['JAVA_HOME']);
+        console.log('Checking Java JDK and Android SDK versions');
+        console.log('ANDROID_SDK_ROOT=' + process.env['ANDROID_SDK_ROOT'] + ' (recommended setting)');
+        console.log('ANDROID_HOME=' + process.env['ANDROID_HOME'] + ' (DEPRECATED)');
 
-        if (!values[0]) {
-            throw new CordovaError('Requirements check failed for JDK 1.8 or greater');
+        if (!String(values[0]).startsWith('1.8.')) {
+            throw new CordovaError(
+                'Requirements check failed for JDK 8 (\'1.8.*\')! Detected version: ' + values[0] + '\n' +
+                'Check your ANDROID_SDK_ROOT / JAVA_HOME / PATH environment variables.'
+            );
         }
 
         if (!values[1]) {
-            throw new CordovaError('Requirements check failed for Android SDK');
+            throw new CordovaError('Requirements check failed for Android SDK! Android SDK was not detected.');
         }
     });
 };
