@@ -314,7 +314,7 @@
                             'Accuracy: '          + position.coords.accuracy          + '\n' +
                             'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
                             'Heading: '           + position.coords.heading           + '\n' +
-                            'Speed: '             + position.coords.speed             + '\n' +
+                            'Speed: '             + position.coords.speed               + '\n' +
                             'Timestamp: '         + position.timestamp                + '\n', null, '', 'Cerrar');*/                        
 
                         coordenadas = position.coords.latitude+','+position.coords.longitude;                
@@ -449,7 +449,8 @@
                         interno = $(this).data("interno");
                         $doble = true;
 
-                        if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
+                        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                        /*if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
                             //alert('calling getPicture');
                             navigator.camera.getPicture(onSuccessCamera, onFailCamera, {
                                 quality: 30,
@@ -457,7 +458,7 @@
                             });
                         } else {
                             alert('no navigator.camera - did you install the plugin?');
-                        }
+                        }*/
                     });
 
                 }
