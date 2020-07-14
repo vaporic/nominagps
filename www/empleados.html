@@ -321,6 +321,10 @@
 
                         //alert($doble);
                         if($doble){
+                            $nombre = $('#name-'+interno).text();
+                            $id = $('#id-'+interno).val();
+                            $sucursal = $('#sucursal-'+interno).val();
+                            
                             // TODO: Update asistencia doble
                             var dataSend2 = {
                                 'NOMBRE_EMPLEADO': $nombre,
