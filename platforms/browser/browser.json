@@ -6,6 +6,23 @@
     "config_munge": {
         "files": {}
     },
-    "installed_plugins": {},
-    "dependent_plugins": {}
+    "installed_plugins": {
+        "cordova-plugin-native-spinner": {
+            "PACKAGE_NAME": "com.fingergps.app"
+        }
+    },
+    "dependent_plugins": {},
+    "modules": [
+        {
+            "file": "plugins/cordova-plugin-native-spinner/www/SpinnerDialog.js",
+            "id": "cordova-plugin-native-spinner.SpinnerDialog",
+            "pluginId": "cordova-plugin-native-spinner",
+            "clobbers": [
+                "SpinnerDialog"
+            ]
+        }
+    ],
+    "plugin_metadata": {
+        "cordova-plugin-native-spinner": "1.1.3"
+    }
 }
