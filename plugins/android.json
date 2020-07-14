@@ -70,9 +70,6 @@
     },
     "cordova-plugin-vibration": {
       "PACKAGE_NAME": "com.fingergps.app"
-    },
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.fingergps.app"
     }
   },
   "dependent_plugins": {}
