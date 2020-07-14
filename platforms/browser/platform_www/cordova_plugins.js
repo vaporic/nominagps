@@ -29,7 +29,8 @@ module.exports.metadata =
 // TOP OF METADATA
 {
     "cordova-plugin-native-spinner": "1.1.3",
-    "cordova-plugin-dialogs": "1.2.1"
+    "cordova-plugin-dialogs": "1.2.1",
+    "cordova-plugin-geolocation": "2.1.0"
 }
 // BOTTOM OF METADATA
 });

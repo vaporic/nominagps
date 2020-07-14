@@ -90,7 +90,7 @@
     "cordova-plugin-geolocation": {
         "source": {
             "type": "registry",
-            "id": "cordova-plugin-geolocation@4.0.1"
+            "id": "cordova-plugin-geolocation@~2.1.0"
         },
         "is_top_level": true,
         "variables": {}

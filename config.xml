@@ -89,4 +89,5 @@
     <plugin name="cordova-plugin-spinner-dialog" spec="https://github.com/Paldom/SpinnerDialog.git" />
     <plugin name="cordova-plugin-camera" source="npm" version="2.4.1" />
     <plugin name="cordova-plugin-dialogs" spec="~1.2.1" />
+    <plugin name="cordova-plugin-geolocation" spec="~2.1.0" />
 </widget>

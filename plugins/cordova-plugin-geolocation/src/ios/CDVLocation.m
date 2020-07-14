@@ -73,7 +73,7 @@
             return (authStatus == kCLAuthorizationStatusAuthorizedWhenInUse) || (authStatus == kCLAuthorizationStatusAuthorizedAlways) || (authStatus == kCLAuthorizationStatusNotDetermined);
         }
 #endif
-        return (authStatus == kCLAuthorizationStatusAuthorizedAlways) || (authStatus == kCLAuthorizationStatusNotDetermined);
+        return (authStatus == kCLAuthorizationStatusAuthorized) || (authStatus == kCLAuthorizationStatusNotDetermined);
     }
 
     // by default, assume YES (for iOS < 4.2)
@@ -87,6 +87,8 @@
 
     if (locationServicesEnabledClassPropertyAvailable) { // iOS 4.x
         return [CLLocationManager locationServicesEnabled];
+    } else if (locationServicesEnabledInstancePropertyAvailable) { // iOS 2.x, iOS 3.x
+        return [(id)self.locationManager locationServicesEnabled];
     } else {
         return NO;
     }
@@ -190,37 +192,35 @@
 
 - (void)getLocation:(CDVInvokedUrlCommand*)command
 {
-    [self.commandDelegate runInBackground:^{
-        NSString* callbackId = command.callbackId;
-        BOOL enableHighAccuracy = [[command argumentAtIndex:0] boolValue];
+    NSString* callbackId = command.callbackId;
+    BOOL enableHighAccuracy = [[command argumentAtIndex:0] boolValue];
 
-        if ([self isLocationServicesEnabled] == NO) {
-            NSMutableDictionary* posError = [NSMutableDictionary dictionaryWithCapacity:2];
-            [posError setObject:[NSNumber numberWithInt:PERMISSIONDENIED] forKey:@"code"];
-            [posError setObject:@"Location services are disabled." forKey:@"message"];
-            CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:posError];
-            [self.commandDelegate sendPluginResult:result callbackId:callbackId];
-        } else {
-            if (!self.locationData) {
-                self.locationData = [[CDVLocationData alloc] init];
-            }
-            CDVLocationData* lData = self.locationData;
-            if (!lData.locationCallbacks) {
-                lData.locationCallbacks = [NSMutableArray arrayWithCapacity:1];
-            }
-
-            if (!__locationStarted || (__highAccuracyEnabled != enableHighAccuracy)) {
-                // add the callbackId into the array so we can call back when get data
-                if (callbackId != nil) {
-                    [lData.locationCallbacks addObject:callbackId];
-                }
-                // Tell the location manager to start notifying us of heading updates
-                [self startLocation:enableHighAccuracy];
-            } else {
-                [self returnLocationInfo:callbackId andKeepCallback:NO];
-            }
+    if ([self isLocationServicesEnabled] == NO) {
+        NSMutableDictionary* posError = [NSMutableDictionary dictionaryWithCapacity:2];
+        [posError setObject:[NSNumber numberWithInt:PERMISSIONDENIED] forKey:@"code"];
+        [posError setObject:@"Location services are disabled." forKey:@"message"];
+        CDVPluginResult* result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:posError];
+        [self.commandDelegate sendPluginResult:result callbackId:callbackId];
+    } else {
+        if (!self.locationData) {
+            self.locationData = [[CDVLocationData alloc] init];
         }
-    }];
+        CDVLocationData* lData = self.locationData;
+        if (!lData.locationCallbacks) {
+            lData.locationCallbacks = [NSMutableArray arrayWithCapacity:1];
+        }
+
+        if (!__locationStarted || (__highAccuracyEnabled != enableHighAccuracy)) {
+            // add the callbackId into the array so we can call back when get data
+            if (callbackId != nil) {
+                [lData.locationCallbacks addObject:callbackId];
+            }
+            // Tell the location manager to start notifying us of heading updates
+            [self startLocation:enableHighAccuracy];
+        } else {
+            [self returnLocationInfo:callbackId andKeepCallback:NO];
+        }
+    }
 }
 
 - (void)addWatch:(CDVInvokedUrlCommand*)command
