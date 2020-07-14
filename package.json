@@ -28,11 +28,7 @@
       "cordova-plugin-spinner-dialog": {},
       "cordova-plugin-camera": {}
     },
-    "platforms": [
-      "android"
-    ]
+    "platforms": []
   },
-  "dependencies": {
-    "cordova-android": "^8.1.0"
-  }
+  "dependencies": {}
 }
