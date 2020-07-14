@@ -102,5 +102,5 @@
     </platform>
     <plugin name="cordova-plugin-native-spinner" spec="~1.1.3" source="npm"/>
     <plugin name="cordova-plugin-spinner-dialog" spec="https://github.com/Paldom/SpinnerDialog.git" source="npm"/>
-    <plugin name="cordova-plugin-camera" spec="4.0.0" source="npm"/>
+    <plugin name="cordova-plugin-camera" source="npm"/>
 </widget>
