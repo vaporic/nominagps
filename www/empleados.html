@@ -84,6 +84,7 @@
             <div class="home-content">
 
                 <div style="padding-top: 20px; text-align: center;">
+                    <h5 style="margin-bottom: 20px;"><span id="name_inmueble"></span></h5>
                     Selecciona un empleado
 
                     <form style="padding: 20px;" id="form-empleados">
@@ -167,7 +168,7 @@
 
             $.ajax({
                 type: 'GET',
-                url: base_url + '/nomina_empleados?&search=' + 'sucursal:' + sucursal_clave + ';nombre:' + $("#search").val() + '&searchFields=sucursal:=;nombre:=;apellido_paterno:=;apellido_materno:=&searchJoin=and',
+                url: base_url + '/registro_asistencias?&search=' + 'CLAVE_SUCURSAL:' + sucursal_clave + ';NOMBRE_EMPLEADO:' + $("#search").val() + '&searchJoin=and',
                 beforeSend: function () {
                     $('.loading-mask').addClass('stop-loading');
                 },
@@ -225,7 +226,7 @@
 
         $.ajax({
             type: 'GET',
-            url: base_url + '/nomina_empleados?search=' + sucursal_clave + '&searchFields=sucursal:like',
+            url: base_url + '/registro_asistencias?search=' + sucursal_clave + '&searchFields=CLAVE_SUCURSAL:like',
             beforeSend: function () {
                 $('.loading-mask').addClass('stop-loading');
             },
@@ -237,7 +238,10 @@
                 $('.loader').hide();
             },
             success: function (data) {
+                console.log(data);
                 if (data.success) {
+
+                    $("#name_inmueble").text(data.message);
 
                     if(data.data.length == 0){
                         $("#list-hot").html("<h3 style='text-align: center;'>No hay empleados disponibles.</h3><div style='text-align: center;padding-bottom: 50px;'><i class='fa fa-3x fa-exclamation-triangle' aria-hidden='true'></i></div>");
@@ -266,34 +270,20 @@
 
                             $("#list-hot").append('<li class="list-item-new">\n' +
                                 '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
-                                '              <img src="'+value.photo+'" id="img-'+value.NO_INTERNO+'" style="width: 100%;">\n' +
-                                '              <div class="text-new height-custom">\n' +
-                                '                <h2 class="title-new" style="text-transform: uppercase;" id="name-'+value.NO_INTERNO+'">' + value.NOMBRE + ' ' + value.APELLIDO_PATERNO + ' ' + value.APELLIDO_MATERNO + '</h2>\n' +
-                                '               <input type="hidden" id="id-'+value.NO_INTERNO+'" value="'+value.ID_EMPLEADO+'">'+
-                                '               <input type="hidden" id="sucursal-'+value.NO_INTERNO+'" value="'+sucursal_clave+'">'+
-                                '                <p class="description-new">\n NO_INTERNO : ' +
-                                value.NO_INTERNO +
-                                '                </p>\n' +
-                                '                <p class="description-new">\n EMPRESA : ' +
-                                value.EMPRESA +
-                                '                </p>\n' +
-                                '                </p>\n' +
-                                '                <p class="description-new">\n INMUEBLE : ' +
-                                value.INMUEBLE +
-                                '                </p>\n' +
-                                '                <p class="description-new">\n HORA ENTRADA : ' +
-                                value.HORA_ENTRADA +
-                                '                </p>\n' +
-                                '                <p class="description-new">\n HORA SALIDA : ' +
-                                value.HORA_SALIDA +
-                                '                </p>\n' +
+                                '              <img src="'+value.photo+'" id="img-'+value.ID_NOMINAE+'" style="width: 100%;">\n' +
+                                '              <div class="text-new height-custom" style="height: 220px;">\n' +
+                                '                <h2 class="title-new" style="text-transform: uppercase;" id="name-'+value.ID_NOMINAE+'">' + value.NOMBRE_EMPLEADO + '</h2>\n' +
+                                '               <input type="hidden" id="id-'+value.ID_NOMINAE+'" value="'+value.ID_NOMINAE+'">'+
+                                '               <input type="hidden" id="sucursal-'+value.ID_NOMINAE+'" value="'+sucursal_clave+'">'+
+                                '                <p class="description-new">\n NO_EMPLEADO: ' +
+                                value.ID_NOMINAE +
                                 '                \n' +
                                 '                <div style="margin-top: 10px;">' +
                                 '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white;">' +
-                                '                <a href="'+src_check+'" class="'+class_check+'" data-doble="false" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check '+class_color_check+'" style="font-size: 40px;color: white;"></i></a>\n' +
+                                '                <a href="'+src_check+'" class="'+class_check+'" data-doble="false" data-interno="'+value.ID_NOMINAE+'"><i class="fa fa-check '+class_color_check+'" style="font-size: 40px;color: white;"></i></a>\n' +
                                 '                </div>' +
                                 '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
-                                '                <a href="'+src_check_doble+'" class="'+class_check_doble+'" data-doble="true" data-interno="'+value.NO_INTERNO+'"><i class="fa fa-check '+class_color_check_doble+'" style="font-size: 40px;color: white;"></i><i class="fa fa-check '+class_color_check_doble+'" style="font-size: 40px;color: white;"></i></a>\n' +
+                                '                <a href="'+src_check_doble+'" class="'+class_check_doble+'" data-doble="true" data-interno="'+value.ID_NOMINAE+'"><i class="fa fa-check '+class_color_check_doble+'" style="font-size: 40px;color: white;"></i><i class="fa fa-check '+class_color_check_doble+'" style="font-size: 40px;color: white;"></i></a>\n' +
                                 '                </div>' +
                                 '                </div>' +
                                 '                <div>' +            

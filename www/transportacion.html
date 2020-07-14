@@ -192,7 +192,7 @@
 
       $.ajax({
         type: 'GET',
-        url: base_url+'/inmuebles',
+        url: base_url+'/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL;NOINMUEBLE',
         beforeSend: function(){
           $('.loading-mask').addClass('stop-loading');
         },  
