@@ -268,10 +268,20 @@
                                 class_color_check_doble = "color-success";
                             }
 
+                            var src_check_triple = "#";                            
+                            var class_check_triple = "check-asistencia-triple";                            
+                            var class_color_check_triple = "";
+
+                            if(value.asistencia_actual_triple){
+                                src_check_triple = "javascript: void(0);";
+                                class_check_triple = "";
+                                class_color_check_triple = "color-success";
+                            }
+
                             $("#list-hot").append('<li class="list-item-new">\n' +
                                 '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
                                 '              <img src="'+value.photo+'" id="img-'+value.ID_NOMINAE+'" style="width: 100%;">\n' +
-                                '              <div class="text-new height-custom" style="height: 220px;">\n' +
+                                '              <div class="text-new height-custom" style="height: 270px;">\n' +
                                 '                <h2 class="title-new" style="text-transform: uppercase;" id="name-'+value.ID_NOMINAE+'">' + value.NOMBRE_EMPLEADO + '</h2>\n' +
                                 '               <input type="hidden" id="id-'+value.ID_NOMINAE+'" value="'+value.ID_NOMINAE+'">'+
                                 '               <input type="hidden" id="sucursal-'+value.ID_NOMINAE+'" value="'+sucursal_clave+'">'+
@@ -284,6 +294,9 @@
                                 '                </div>' +
                                 '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
                                 '                <a href="'+src_check_doble+'" class="'+class_check_doble+'" data-doble="true" data-interno="'+value.ID_NOMINAE+'"><i class="fa fa-check '+class_color_check_doble+'" style="font-size: 40px;color: white;"></i><i class="fa fa-check '+class_color_check_doble+'" style="font-size: 40px;color: white;"></i></a>\n' +
+                                '                </div>' +
+                                '                <div style="width: 50%;display:block;background: #8C8A8F;float: left;text-align: center; padding: 20px 0;border: 1px solid white">' +
+                                '                <a href="'+src_check_triple+'" class="'+class_check_triple+'" data-triple="true" data-interno="'+value.ID_NOMINAE+'"><i class="fa fa-check '+class_color_check_triple+'" style="font-size: 40px;color: white;"></i><i class="fa fa-check '+class_color_check_triple+'" style="font-size: 40px;color: white;"></i><i class="fa fa-check '+class_color_check_triple+'" style="font-size: 40px;color: white;"></i></a>\n' +
                                 '                </div>' +
                                 '                </div>' +
                                 '                <div>' +            
@@ -302,10 +315,12 @@
                     var photoNew;
                     var $this;
                     var $this2;
+                    var $this3;
                     var $nombre;
                     var $id;
                     var $sucursal;
                     var $doble = false;
+                    var $triple = false;
 
                     var onSuccess = function(position) {
                         /*navigator.notification.alert('Latitude: '          + position.coords.latitude          + '\n' +
@@ -352,6 +367,44 @@
                                         $this2.find("i").addClass("color-success");
                                         $this2.removeClass("check-asistencia");
                                         $this2.attr('href', 'javascript: void(0);');
+                                        window.plugins.spinnerDialog.hide();
+                                        navigator.notification.alert('La asistencia se aplicó correctamente.', null, '', 'Cerrar');                                    
+                                    }else{
+                                        navigator.notification.alert('Error, se tienen que registrar asistencia previamente.', null, '', 'Cerrar');                                   
+                                    }
+                                }
+                            });
+                        }else if($triple){
+                            // TODO: Update asistencia triple
+                            var dataSend3 = {
+                                'NOMBRE_EMPLEADO': $nombre,
+                                'JUSTIFICACION': 'NONE',
+                                'NOTAS': 'NONE',
+                                'USR_ASIS2': 'NONE',
+                                'NOTAS2': 'NONE',
+                                'OBSERVACIONES': 'NONE',
+                                'COORDENADAS': coordenadas,
+                                'FOTO': '',
+                                'ID_NOMINAE': $id,
+                                'CLAVE_SUCURSAL': $sucursal
+                            };                            
+                                            
+                            $.ajax({
+                                type: 'POST',
+                                data: dataSend3,
+                                url: base_url + '/registro_asistencias_triple',                            
+                                error: function (xhr, status, error) {
+                                    window.plugins.spinnerDialog.hide();
+                                    var err = JSON.parse(xhr.responseText);
+                                    if (!err.success) {
+                                        navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
+                                    }
+                                },
+                                success: function (data) {                                    
+                                    if (data.success) {                                    
+                                        $this3.find("i").addClass("color-success");
+                                        $this3.removeClass("check-asistencia");
+                                        $this3.attr('href', 'javascript: void(0);');
                                         window.plugins.spinnerDialog.hide();
                                         navigator.notification.alert('La asistencia se aplicó correctamente.', null, '', 'Cerrar');                                    
                                     }else{
@@ -432,6 +485,7 @@
                         $this = $(this);
                         interno = $(this).data("interno");
                         $doble = false;
+                        $triple = false;
 
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
                             //alert('calling getPicture');
@@ -449,6 +503,29 @@
                         $this2 = $(this);
                         interno = $(this).data("interno");
                         $doble = true;
+                        $triple = false;
+                        $nombre = $('#name-'+interno).text();
+                        $id = $('#id-'+interno).val();
+                        $sucursal = $('#sucursal-'+interno).val();
+
+                        navigator.geolocation.getCurrentPosition(onSuccess, onError);
+                        /*if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
+                            //alert('calling getPicture');
+                            navigator.camera.getPicture(onSuccessCamera, onFailCamera, {
+                                quality: 30,
+                                destinationType: Camera.DestinationType.DATA_URL
+                            });
+                        } else {
+                            alert('no navigator.camera - did you install the plugin?');
+                        }*/
+                    });
+
+                    $(".check-asistencia-triple").on("click", function () {
+                        window.plugins.spinnerDialog.show();
+                        $this3 = $(this);
+                        interno = $(this).data("interno");
+                        $doble = false;
+                        $triple = true;
                         $nombre = $('#name-'+interno).text();
                         $id = $('#id-'+interno).val();
                         $sucursal = $('#sucursal-'+interno).val();
