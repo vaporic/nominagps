@@ -51,7 +51,7 @@
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
-    <preference name="phonegap-version" value="cli-6.2.0"></preference>
+    <preference name="phonegap-version" value="cli-6.5.0"></preference>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
