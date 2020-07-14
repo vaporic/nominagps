@@ -435,7 +435,7 @@
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
                             //alert('calling getPicture');
                             navigator.camera.getPicture(onSuccessCamera, onFailCamera, {
-                                quality: 5,
+                                quality: 30,
                                 destinationType: Camera.DestinationType.DATA_URL
                             });
                         } else {
@@ -452,7 +452,7 @@
                         if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
                             //alert('calling getPicture');
                             navigator.camera.getPicture(onSuccessCamera, onFailCamera, {
-                                quality: 5,
+                                quality: 30,
                                 destinationType: Camera.DestinationType.DATA_URL
                             });
                         } else {
