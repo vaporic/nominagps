@@ -318,7 +318,6 @@
                             'Timestamp: '         + position.timestamp                + '\n', null, '', 'Cerrar');*/                        
 
                         coordenadas = position.coords.latitude+','+position.coords.longitude;                
-                        alert(coordenadas);
 
                         //alert($doble);
                         if($doble){
@@ -349,6 +348,7 @@
                                 },
                                 success: function (data) {                                    
                                     if (data.success) {                                    
+                                        alert(data.success);
                                         $this2.find("i").addClass("color-success");
                                         $this2.removeClass("check-asistencia");
                                         $this2.attr('href', 'javascript: void(0);');
