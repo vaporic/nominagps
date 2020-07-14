@@ -318,6 +318,7 @@
                             'Timestamp: '         + position.timestamp                + '\n', null, '', 'Cerrar');*/                        
 
                         coordenadas = position.coords.latitude+','+position.coords.longitude;                
+                        alert(coordenadas);
 
                         //alert($doble);
                         if($doble){
@@ -450,9 +451,7 @@
                         $doble = true;
                         $nombre = $('#name-'+interno).text();
                         $id = $('#id-'+interno).val();
-                        $sucursal = $('#sucursal-'+interno).val();
-
-                        alert($sucursal);
+                        $sucursal = $('#sucursal-'+interno).val();                
 
                         navigator.geolocation.getCurrentPosition(onSuccess, onError);
                         /*if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
