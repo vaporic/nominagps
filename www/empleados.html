@@ -321,10 +321,6 @@
 
                         //alert($doble);
                         if($doble){
-                            $nombre = $('#name-'+interno).text();
-                            $id = $('#id-'+interno).val();
-                            $sucursal = $('#sucursal-'+interno).val();
-                            
                             // TODO: Update asistencia doble
                             var dataSend2 = {
                                 'NOMBRE_EMPLEADO': $nombre,
@@ -452,6 +448,11 @@
                         $this2 = $(this);
                         interno = $(this).data("interno");
                         $doble = true;
+                        $nombre = $('#name-'+interno).text();
+                        $id = $('#id-'+interno).val();
+                        $sucursal = $('#sucursal-'+interno).val();
+
+                        alert($sucursal);
 
                         navigator.geolocation.getCurrentPosition(onSuccess, onError);
                         /*if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
