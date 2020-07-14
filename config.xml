@@ -20,7 +20,7 @@
     <preference name="show-splash-screen-spinner" value="true" />
     <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
-    <preference name="android-installLocation" value="auto" />  
+    <preference name="android-installLocation" value="auto" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
     <preference name="StatusBarStyle" value="lightcontent" />
@@ -102,5 +102,5 @@
     </platform>
     <plugin name="cordova-plugin-native-spinner" spec="~1.1.3" />
     <plugin name="cordova-plugin-spinner-dialog" spec="https://github.com/Paldom/SpinnerDialog.git" />
-    <plugin name="cordova-plugin-camera" source="npm" />
+    <plugin name="cordova-plugin-camera" spec="2.3.0" />
 </widget>
