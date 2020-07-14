@@ -100,7 +100,7 @@
         <splash density="port-xxhdpi" src="res/screen/android/splash-port-xxhdpi.png" />
         <splash density="port-xxxhdpi" src="res/screen/android/splash-port-xxxhdpi.png" />
     </platform>
-    <plugin name="cordova-plugin-native-spinner" spec="~1.1.3" source="npm"/>
+    <plugin name="cordova-plugin-native-spinner" source="npm"/>
     <plugin name="cordova-plugin-spinner-dialog" spec="https://github.com/Paldom/SpinnerDialog.git" source="npm"/>
     <plugin name="cordova-plugin-camera" source="npm"/>
 </widget>
