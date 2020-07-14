@@ -1,4 +1,0 @@
-#Tue Jan 15 21:14:35 CST 2019
-base.0=/home/hugo/Code/nominagps/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
-path.0=classes.dex
-renamed.0=classes.dex

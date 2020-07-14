@@ -14,6 +14,7 @@
       "PACKAGE_NAME": "com.fingergps.app"
     },
     "cordova-plugin-camera": {
+      "ANDROID_SUPPORT_V4_VERSION": "27.+",
       "PACKAGE_NAME": "com.fingergps.app"
     },
     "cordova-plugin-console": {
@@ -40,10 +41,37 @@
     "cordova-plugin-file-transfer": {
       "PACKAGE_NAME": "com.fingergps.app"
     },
-    "cordova-plugin-spinner-dialog": {
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.fingergps.app"
+    },
+    "cordova-plugin-globalization": {
+      "PACKAGE_NAME": "com.fingergps.app"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "com.fingergps.app"
+    },
+    "cordova-plugin-media": {
+      "PACKAGE_NAME": "com.fingergps.app"
+    },
+    "cordova-plugin-media-capture": {
       "PACKAGE_NAME": "com.fingergps.app"
     },
     "cordova-plugin-native-spinner": {
+      "PACKAGE_NAME": "com.fingergps.app"
+    },
+    "cordova-plugin-network-information": {
+      "PACKAGE_NAME": "com.fingergps.app"
+    },
+    "cordova-plugin-spinner-dialog": {
+      "PACKAGE_NAME": "com.fingergps.app"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.fingergps.app"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "com.fingergps.app"
+    },
+    "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "com.fingergps.app"
     }
   },
