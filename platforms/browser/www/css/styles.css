@@ -1279,9 +1279,21 @@ a {
   background-image: linear-gradient(343deg, #4c68b1, black 82%);*/
 }
 
+.ion-ios-home-outline:before{
+  color: #ffffff;
+}
+
+.ion-android-bus:before{
+  color: #ffffff;
+}
+
+.ion-log-out:before{
+  color: #ffffff;
+}
+
 .bg-gradient-alt {
-  background-image: -webkit-linear-gradient(90deg, #ca151d 0%, #430003 100%);
-  background-image: linear-gradient(90deg, #ca151d 0%, #430003 100%);
+  background-image: -webkit-linear-gradient(90deg, #000000 0%, #000000 100%);
+  background-image: linear-gradient(90deg, #000000 0%, #000000 100%);
 }
 .list-calendar-events {
   margin-right: 20px;
