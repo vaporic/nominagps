@@ -209,17 +209,14 @@
         url: base_url+'/incidencias?with=inmueble',
         beforeSend: function(){
           $('.loading-mask').addClass('stop-loading');
-          window.plugins.spinnerDialog.show();
         },  
         error: function(xhr, status, error) {
-            window.plugins.spinnerDialog.hide();
             var err = JSON.parse(xhr.responseText);
             if(!err.success){                          
                 navigator.notification.alert(err.message, null, '', 'Cerrar');          
             }
         },
         success: function(data) {
-            window.plugins.spinnerDialog.hide();
           if(data.success){
 
             console.log(data.data);
