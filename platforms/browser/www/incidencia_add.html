@@ -195,11 +195,20 @@
             e.preventDefault();
 
             // Save
+            var currentdate = new Date(); 
+            var datetime = currentdate.getFullYear() + "-"
+                        + (currentdate.getMonth()+1)  + "-" 
+                        + currentdate.getDate() + " "  
+                        + currentdate.getHours() + ":"  
+                        + currentdate.getMinutes() + ":" 
+                        + currentdate.getSeconds();
+            alert(datetime);
             var dataSend = {
                 'ID_INMUEBLE': $("#select_inmueble").val(),
                 'FECHA': $("#fecha").val(),
                 'DESCRIPCION': $("#descripcion").val(),
-                'USUARIO': '',
+                'USUARIO': 'usuario',
+                'SISTEMA': datetime,
                 'FOTO1': photoNew1,
                 'FOTO2': photoNew2,
                 'FOTO3': photoNew3,
@@ -210,7 +219,10 @@
             $.ajax({
                 type: 'POST',
                 data: dataSend,
-                url: base_url + '/incidencias',                            
+                url: base_url + '/incidencias',    
+                beforeSend: function(){
+                    //window.plugins.spinnerDialog.show();
+                },                     
                 error: function (xhr, status, error) {
                     window.plugins.spinnerDialog.hide();
                     var err = JSON.parse(xhr.responseText);
