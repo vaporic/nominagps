@@ -82,7 +82,7 @@
         <div class="home-content">
 
           <div style="padding-top: 20px; text-align: center;">
-            <form id="form-inmueble" style="padding: 20px;">
+            <form id="form-insidencia" style="padding: 20px;">
                 <label for="select_inmueble" style="text-align: left;">Inmueble</label>
                 <select name="select_inmueble" class="w-input" id="select_inmueble" required></select>
                 <label for="fecha" style="text-align: left;">Fecha</label>
@@ -94,11 +94,11 @@
                     <img src="" alt="" id="photo1img">
                 </div>
                 <a href="#" class="take-photo2 w-button action-button grey"><i class="icon ion-camera"></i> Tomar Foto 2</a>
-                <div id="photo2">
+                <div id="photo2" style="margin-top: 10px;">
                     <img src="" alt="" id="photo2img">
                 </div>
                 <a href="#" class="take-photo2 w-button action-button grey"><i class="icon ion-camera"></i> Tomar Foto 3</a>
-                <div id="photo3">
+                <div id="photo3" style="margin-top: 10px;">
                     <img src="" alt="" id="photo3img">
                 </div>
                 <input type="submit" value="CREAR" class="w-button action-button grey" style="margin-top: 20px;" required>
@@ -136,7 +136,9 @@
         var goToPage = function (hrefPage) {
             document.location = hrefPage;
         };
-        var photoNew = '';
+        var photoNew1 = '';
+        var photoNew2 = '';
+        var photoNew3 = '';
 
         $.ajax({
             type: "GET",
@@ -150,28 +152,123 @@
             }
         });
 
-        function onSuccessCamera(imageData) {
+        function onSuccessCamera1(imageData) {
             //window.plugins.spinnerDialog.hide();
             var image = document.getElementById('photo1img');
 
             image.src = "data:image/jpeg;base64," + imageData;
-            photoNew = image.src;
+            photoNew1 = image.src;
+
+            window.plugins.spinnerDialog.hide();
 
             // Get Location
             //navigator.geolocation.getCurrentPosition(onSuccess, onError);
         }
+
+        function onSuccessCamera2(imageData) {
+            //window.plugins.spinnerDialog.hide();
+            var image = document.getElementById('photo1img');
+
+            image.src = "data:image/jpeg;base64," + imageData;
+            photoNew2 = image.src;
+
+            window.plugins.spinnerDialog.hide();
+
+            // Get Location
+            //navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
+
+        function onSuccessCamera3(imageData) {
+            //window.plugins.spinnerDialog.hide();
+            var image = document.getElementById('photo1img');
+
+            image.src = "data:image/jpeg;base64," + imageData;
+            photoNew3 = image.src;
+
+            window.plugins.spinnerDialog.hide();
+
+            // Get Location
+            //navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
+
+        $("#form-insidencia").on("submit", function(e){
+            e.preventDefault();
+
+            // Save
+            var dataSend = {
+                'ID_INMUEBLE': $("#select_inmueble").val(),
+                'FECHA': $("#fecha").val(),
+                'DESCRIPCION': $("#descripcion").val(),
+                'USUARIO': '',
+                'FOTO1': photoNew1,
+                'FOTO2': photoNew2,
+                'FOTO3': photoNew3,
+                'BITACORA': 'Registrado desde la APP'
+            };
+
+            // TODO: Guardar Datos
+            $.ajax({
+                type: 'POST',
+                data: dataSend,
+                url: base_url + '/incidencias',                            
+                error: function (xhr, status, error) {
+                    window.plugins.spinnerDialog.hide();
+                    var err = JSON.parse(xhr.responseText);
+                    if (!err.success) {
+                        navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
+                    }
+                },
+                success: function (data) {
+                    //alert(data);
+                    if (data.success) {                                    
+                        goToPage('insidencias.html');
+                        window.plugins.spinnerDialog.hide();
+                    }else{
+                        navigator.notification.alert('Error.', null, '', 'Cerrar');                                   
+                    }
+                }
+            });
+        });
 
         function onFailCamera(message) {
             window.plugins.spinnerDialog.hide();
             navigator.notification.alert('Failed because: ' + message, null, '', 'Cerrar');
         }
 
-         $(".take-photo1").on("click", function () {
+        $(".take-photo1").on("click", function () {
             window.plugins.spinnerDialog.show();
             $this = $(this);
 
             if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
-                navigator.camera.getPicture(onSuccessCamera, onFailCamera, {
+                navigator.camera.getPicture(onSuccessCamera1, onFailCamera, {
+                    quality: 30,
+                    destinationType: Camera.DestinationType.DATA_URL
+                });
+            } else {
+                alert('no navigator.camera - did you install the plugin?');
+            }
+        });
+
+        $(".take-photo2").on("click", function () {
+            window.plugins.spinnerDialog.show();
+            $this = $(this);
+
+            if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
+                navigator.camera.getPicture(onSuccessCamera2, onFailCamera, {
+                    quality: 30,
+                    destinationType: Camera.DestinationType.DATA_URL
+                });
+            } else {
+                alert('no navigator.camera - did you install the plugin?');
+            }
+        });
+
+        $(".take-photo3").on("click", function () {
+            window.plugins.spinnerDialog.show();
+            $this = $(this);
+
+            if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
+                navigator.camera.getPicture(onSuccessCamera3, onFailCamera, {
                     quality: 30,
                     destinationType: Camera.DestinationType.DATA_URL
                 });
