@@ -1291,6 +1291,10 @@ a {
   color: #ffffff;
 }
 
+.ion-grid:before{
+  color: #ffffff;
+}
+
 .bg-gradient-alt {
   background-image: -webkit-linear-gradient(90deg, #000000 0%, #000000 100%);
   background-image: linear-gradient(90deg, #000000 0%, #000000 100%);
