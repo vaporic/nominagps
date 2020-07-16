@@ -202,7 +202,6 @@
                         + currentdate.getHours() + ":"  
                         + currentdate.getMinutes() + ":" 
                         + currentdate.getSeconds();
-            alert(datetime);
             var dataSend = {
                 'ID_INMUEBLE': $("#select_inmueble").val(),
                 'FECHA': $("#fecha").val(),
@@ -221,7 +220,7 @@
                 data: dataSend,
                 url: base_url + '/incidencias',    
                 beforeSend: function(){
-                    //window.plugins.spinnerDialog.show();
+                    window.plugins.spinnerDialog.show();
                 },                     
                 error: function (xhr, status, error) {
                     window.plugins.spinnerDialog.hide();
@@ -233,7 +232,7 @@
                 success: function (data) {
                     //alert(data);
                     if (data.success) {                                    
-                        goToPage('insidencias.html');
+                        goToPage('incidencias.html');                        
                         window.plugins.spinnerDialog.hide();
                     }else{
                         navigator.notification.alert('Error.', null, '', 'Cerrar');                                   
