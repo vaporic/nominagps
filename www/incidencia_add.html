@@ -89,7 +89,19 @@
                 <input type="date" class="w-input" id="fecha" required>
                 <label for="descripcion" style="text-align: left;">Descripción</label>
                 <textarea name="descripcion" id="descripcion" cols="30" rows="10" class="w-input"></textarea>
-                <input type="submit" value="CREAR" class="w-button action-button grey" required>
+                <a href="#" class="take-photo1 w-button action-button grey"><i class="icon ion-camera"></i> Tomar Foto 1</a>
+                <div id="photo1">
+                    <img src="" alt="" id="photo1img">
+                </div>
+                <a href="#" class="take-photo2 w-button action-button grey"><i class="icon ion-camera"></i> Tomar Foto 2</a>
+                <div id="photo2">
+                    <img src="" alt="" id="photo2img">
+                </div>
+                <a href="#" class="take-photo2 w-button action-button grey"><i class="icon ion-camera"></i> Tomar Foto 3</a>
+                <div id="photo3">
+                    <img src="" alt="" id="photo3img">
+                </div>
+                <input type="submit" value="CREAR" class="w-button action-button grey" style="margin-top: 20px;" required>
             </form>
           </div>
 
@@ -120,6 +132,12 @@
   <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
   <script>
     $(document).on("ready", function(){
+        var base_url = 'http://gps.somostusideas.info/api';
+        var goToPage = function (hrefPage) {
+            document.location = hrefPage;
+        };
+        var photoNew = '';
+
         $.ajax({
             type: "GET",
             url: 'http://gps.somostusideas.info/api/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL', 
@@ -129,6 +147,36 @@
                 $.each(data.data,function(key, registro) {
                     $("#select_inmueble").append('<option value='+registro.ID_INMUEBLE+'>'+registro.RAZONSOCIAL+'</option>');
                 });
+            }
+        });
+
+        function onSuccessCamera(imageData) {
+            //window.plugins.spinnerDialog.hide();
+            var image = document.getElementById('photo1img');
+
+            image.src = "data:image/jpeg;base64," + imageData;
+            photoNew = image.src;
+
+            // Get Location
+            //navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
+
+        function onFailCamera(message) {
+            window.plugins.spinnerDialog.hide();
+            navigator.notification.alert('Failed because: ' + message, null, '', 'Cerrar');
+        }
+
+         $(".take-photo1").on("click", function () {
+            window.plugins.spinnerDialog.show();
+            $this = $(this);
+
+            if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
+                navigator.camera.getPicture(onSuccessCamera, onFailCamera, {
+                    quality: 30,
+                    destinationType: Camera.DestinationType.DATA_URL
+                });
+            } else {
+                alert('no navigator.camera - did you install the plugin?');
             }
         });
     }); 
