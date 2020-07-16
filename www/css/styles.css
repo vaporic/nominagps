@@ -1678,7 +1678,7 @@ input[type=text]:focus, textarea:focus {
     padding-right: 5px;
     padding-left: 5px;
     float: left;
-    background: #E3E3E3;
+    background: #FFF;
 }
 
 .img-full {
