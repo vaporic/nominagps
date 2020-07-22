@@ -75,6 +75,7 @@
                     <label style="text-align: left;">Producto</label>
                     <input type="hidden" name="producto" id="producto">
                     <a href="#" id="scan" style="color: white;background-color: black;padding: 25px;margin-top: 10px;margin-bottom: 10px;display: block;">ESCANEAR <span class="icon ion-qr-scanner" style="margin-left: 5px;"></span></a>
+                    <span id="errormsg"></span>
 
                     <span id="input-cantidad">
                         <label for="" style="float: left;">Cantidad</label>
@@ -139,16 +140,17 @@
       });
 
       $('#scan').click( function() 
-        {
-          navigator.notification.alert("ok");
+        {          
           cordova.plugins.barcodeScanner.scan(
           function (result) {
+            $("#errormsg").text(result);
             navigator.notification.alert("We got a barcode\n" +
                     "Result: " + result.text + "\n" +
                     "Format: " + result.format + "\n" +
                     "Cancelled: " + result.cancelled, null, '', 'Cerrar');            
           }, 
           function (error) {
+            $("#errormsg").text(error);
             navigator.notification.alert("Scanning failed: " + error, null, '', 'Cerrar');
           });
         }
