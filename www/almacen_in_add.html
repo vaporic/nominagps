@@ -138,6 +138,7 @@
         
         if(prodcuto && cantidad){
           $("#list-hot").append('<li class="list-item-new" style="width: 100%;"><a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1" style="display: block;width: 100%;"><div class="text-new"><h2 class="title-new" style="text-transform: uppercase;">'+productoDescription+'</h2><p class="description-new">Cantidad: '+cantidad+'</p></div></a></li>');
+          
           $("#cantidad").addAttr("disabled");
           $("#productoDescription").html("");
           $("#scan").show();
@@ -164,13 +165,14 @@
                   }
               },
               success: function(data) {
+                var scan = $("#scan");
                 if(data.success){                  
                   $("#cantidad").removeAttr("disabled");
-                  $("#scan").hide();
+                  scan.hide();
                   $("#productoDescription").html("<strong>"+data.data[0].NOMBRE+"</strong>");
                   $("#producto").val(result.text);
                 }else{
-                  $("#scan").show();
+                  scan.show();
                   $("#producto").val("");
                   $("#cantidad").addAttr("disabled");
                   $("#cantidad").val("");
