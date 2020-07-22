@@ -171,7 +171,9 @@
                   scan.hide();
                   $("#productoDescription").html("<strong>"+data.data[0].NOMBRE+"</strong>");
                   $("#producto").val(result.text);
-                }else{
+                }
+
+                if(data.data.lenght == 0){
                   scan.show();
                   $("#producto").val("");
                   $("#cantidad").addAttr("disabled");
