@@ -151,6 +151,7 @@
           function (result) {          
             //navigator.notification.alert(result.text, null, '', 'Cerrar');    
 
+            alert(result.text);
             $.ajax({
               type: 'GET',
               url: base_url+'/productos?search='+result.text+'&searchFields=CLAVE:like&limit=1',
@@ -165,6 +166,7 @@
               },
               success: function(data) {
                 if(data.success){
+                  alert(data.data[0]);
                   $("#cantidad").removeAttr("disabled");
                   $("#scan").hide();
                   $("#productoDescription").html("<strong>"+data.data[0].NOMBRE+"</strong>");
