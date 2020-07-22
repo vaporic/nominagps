@@ -90,7 +90,7 @@
     <plugin name="cordova-plugin-camera" source="npm" version="2.4.1" />
     <plugin name="cordova-plugin-dialogs" spec="~1.2.1" />
     <plugin name="cordova-plugin-geolocation" spec="~2.1.0" />
-    <plugin name="phonegap-plugin-barcodescanner" spec="6.0.8">
+    <plugin name="phonegap-plugin-barcodescanner" spec="7.0.1">
         <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Barcode Scanner" />
     </plugin>
