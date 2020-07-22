@@ -150,10 +150,28 @@
           cordova.plugins.barcodeScanner.scan(
           function (result) {          
             //navigator.notification.alert(result.text, null, '', 'Cerrar');    
-            $("#cantidad").removeAttr("disabled");
-            $("#scan").hide();
-            $("#productoDescription").html("<strong>ATOMIZADOR DE PLASTICO</strong>");
-            $("#producto").val("1");
+
+            $.ajax({
+              type: 'GET',
+              url: base_url+'/productos?search='+result.text+'&searchFields=CLAVE:like&limit=1',
+              beforeSend: function(){
+                $('.loading-mask').addClass('stop-loading');
+              },  
+              error: function(xhr, status, error) {
+                  var err = JSON.parse(xhr.responseText);
+                  if(!err.success){                          
+                      navigator.notification.alert(err.message, null, '', 'Cerrar');          
+                  }
+              },
+              success: function(data) {
+                if(data.success){
+                  $("#cantidad").removeAttr("disabled");
+                  $("#scan").hide();
+                  $("#productoDescription").html("<strong>"+data.data[0].NOMBRE+"</strong>");
+                  $("#producto").val(result.text);
+                }
+              }
+            });  
           }, 
           function (error) {            
             navigator.notification.alert("Scanning failed: " + error, null, '', 'Cerrar');
