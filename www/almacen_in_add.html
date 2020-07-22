@@ -129,6 +129,7 @@
       $("#addProduct").on("submit", function(e){
         e.preventDefault();
         var prodcuto = $("#producto").val();
+        var productoDescription = $("#productoDescription").val();
         var cantidad = $("#cantidad").val();
 
         if(!prodcuto){
@@ -136,7 +137,7 @@
         }
         
         if(prodcuto && cantidad){
-          $("#list-hot").append('<li class="list-item-new" style="width: 100%;"><a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1" style="display: block;width: 100%;"><div class="text-new"><h2 class="title-new" style="text-transform: uppercase;">'+prodcuto+'</h2><p class="description-new">Cantidad: '+cantidad+'</p></div></a></li>');
+          $("#list-hot").append('<li class="list-item-new" style="width: 100%;"><a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1" style="display: block;width: 100%;"><div class="text-new"><h2 class="title-new" style="text-transform: uppercase;">'+productoDescription+'</h2><p class="description-new">Cantidad: '+cantidad+'</p></div></a></li>');
           $("#cantidad").addAttr("disabled");
           $("#productoDescription").html("");
           $("#scan").show();
@@ -151,6 +152,7 @@
             $("#cantidad").removeAttr("disabled");
             $("#scan").hide();
             $("#productoDescription").html("<strong>ATOMIZADOR DE PLASTICO</strong>");
+            $("#producto").val("1");
           }, 
           function (error) {            
             navigator.notification.alert("Scanning failed: " + error, null, '', 'Cerrar');
