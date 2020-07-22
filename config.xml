@@ -90,4 +90,5 @@
     <plugin name="cordova-plugin-camera" source="npm" version="2.4.1" />
     <plugin name="cordova-plugin-dialogs" spec="~1.2.1" />
     <plugin name="cordova-plugin-geolocation" spec="~2.1.0" />
+    <plugin name="phonegap-plugin-barcodescanner" />
 </widget>
