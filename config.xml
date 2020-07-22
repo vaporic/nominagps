@@ -99,4 +99,5 @@
     <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
         <string>To scan barcodes</string>
     </edit-config>
+    <plugin name="cordova-plugin-statusbar" />
 </widget>
