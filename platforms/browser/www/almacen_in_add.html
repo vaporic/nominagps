@@ -75,6 +75,7 @@
                     <label style="text-align: left;">Producto</label>
                     <input type="hidden" name="producto" id="producto">
                     <a href="#" id="scan" style="color: white;background-color: black;padding: 25px;margin-top: 10px;margin-bottom: 10px;display: block;">ESCANEAR <span class="icon ion-qr-scanner" style="margin-left: 5px;"></span></a>
+                    <div id="productoDescription"></div>
                     <span id="errormsg"></span>
 
                     <span id="input-cantidad">
@@ -136,6 +137,8 @@
         
         if(prodcuto && cantidad){
           $("#list-hot").append('<li class="list-item-new" style="width: 100%;"><a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1" style="display: block;width: 100%;"><div class="text-new"><h2 class="title-new" style="text-transform: uppercase;">'+prodcuto+'</h2><p class="description-new">Cantidad: '+cantidad+'</p></div></a></li>');
+          $("#cantidad").addAttr("disabled");
+          $("#productoDescription").html("");
         }        
       });
 
@@ -143,7 +146,9 @@
         {          
           cordova.plugins.barcodeScanner.scan(
           function (result) {          
-            navigator.notification.alert(result.text, null, '', 'Cerrar');            
+            //navigator.notification.alert(result.text, null, '', 'Cerrar');    
+            $("#cantidad").removeAttr("disabled");
+            $("#productoDescription").html("<strong>ATOMIZADOR DE PLASTICO</strong>");
           }, 
           function (error) {            
             navigator.notification.alert("Scanning failed: " + error, null, '', 'Cerrar');

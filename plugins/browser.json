@@ -15,6 +15,9 @@
         },
         "cordova-plugin-geolocation": {
             "PACKAGE_NAME": "com.fingergps.app"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.fingergps.app"
         }
     },
     "dependent_plugins": {}
