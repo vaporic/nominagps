@@ -142,15 +142,10 @@
       $('#scan').click( function() 
         {          
           cordova.plugins.barcodeScanner.scan(
-          function (result) {
-            $("#errormsg").text(result);
-            navigator.notification.alert("We got a barcode\n" +
-                    "Result: " + result.text + "\n" +
-                    "Format: " + result.format + "\n" +
-                    "Cancelled: " + result.cancelled, null, '', 'Cerrar');            
+          function (result) {          
+            navigator.notification.alert(result.text, null, '', 'Cerrar');            
           }, 
-          function (error) {
-            $("#errormsg").text(error);
+          function (error) {            
             navigator.notification.alert("Scanning failed: " + error, null, '', 'Cerrar');
           });
         }

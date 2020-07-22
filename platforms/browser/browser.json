@@ -4,7 +4,20 @@
         "uninstalled": []
     },
     "config_munge": {
-        "files": {}
+        "files": {
+            "*-Info.plist": {
+                "parents": {
+                    "NSCameraUsageDescription": [
+                        {
+                            "xml": "<string>To scan barcodes</string>",
+                            "count": 1,
+                            "mode": "merge",
+                            "id": "config.xml"
+                        }
+                    ]
+                }
+            }
+        }
     },
     "installed_plugins": {
         "cordova-plugin-native-spinner": {
