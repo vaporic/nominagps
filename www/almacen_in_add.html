@@ -129,7 +129,7 @@
       $("#addProduct").on("submit", function(e){
         e.preventDefault();
         var prodcuto = $("#producto").val();
-        var productoDescription = $("#productoDescription").val();
+        var productoDescription = $("#productoDescription").html();
         var cantidad = $("#cantidad").val();
 
         if(!prodcuto){
