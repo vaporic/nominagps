@@ -24,6 +24,11 @@
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarBackgroundColor" value="#000000" />
     <preference name="StatusBarStyle" value="lightcontent" />
+
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="android-targetSdkVersion" value="22"/>
+    <preference name="phonegap-version" value="cli-8.0.0" />
+
     <plugin name="cordova-plugin-splashscreen" />
     <access origin="*" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
@@ -90,8 +95,8 @@
     <plugin name="cordova-plugin-camera" source="npm" version="2.4.1" />
     <plugin name="cordova-plugin-dialogs" spec="~1.2.1" />
     <plugin name="cordova-plugin-geolocation" spec="~2.1.0" />
-    <plugin name="phonegap-plugin-barcodescanner" spec="7.0.1">
-        <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
-        <variable name="CAMERA_USAGE_DESCRIPTION" value="Barcode Scanner" />
-    </plugin>
+    <plugin name="phonegap-plugin-barcodescanner" source="npm" spec="8.0.0"/>
+    <edit-config target="NSCameraUsageDescription" file="*-Info.plist" mode="merge">
+        <string>To scan barcodes</string>
+    </edit-config>
 </widget>
