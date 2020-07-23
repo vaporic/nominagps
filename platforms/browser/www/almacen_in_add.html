@@ -97,7 +97,7 @@
                   <label for="" style="float: left;">Concepto</label>
                   <input type="text" name="concepto" id="concepto" class="w-input">
                 </span>
-                <a href="almacen.html" id="saveMov" style="display: none; background-color: #2ecc71;margin-bottom: 50px;" class="w-button action-button grey">GUARDAR</a>
+                <a href="#" id="saveMov" style="display: none; background-color: #2ecc71;margin-bottom: 50px;" class="w-button action-button grey">GUARDAR</a>
             </div>
         </div>
 
@@ -155,6 +155,42 @@
         $("#productoDescription").html("");
       });
 
+      //Save Mov
+      $("saveMov").on("click", function(e){
+        e.preventDefault();        
+        var producto = $("#producto").val();                  
+          var cantidad = $("#cantidad").val();
+          var concepto = $("#concepto").val();
+          var dataSend = {
+            'MOVIMIENTO': 'ENTRADA',
+            'CONCEPTO': concepto,
+            'TOTAL_PIEZAS': 1
+          };
+          $.ajax({
+              type: 'POST',
+              data: dataSend,
+              url: base_url + '/movimiento_almacens',     
+              beforeSend: function () {
+                window.plugins.spinnerDialog.show();
+              },                      
+              error: function (xhr, status, error) {
+                  window.plugins.spinnerDialog.hide();
+                  var err = JSON.parse(xhr.responseText);
+                  if (!err.success) {
+                      navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
+                  }
+              },
+              success: function (data) {                                    
+                  if (data.success) {                              
+                      window.plugins.spinnerDialog.hide();
+                      goToPage('almacen.html');
+                      //navigator.notification.alert('El movimiento se aplicó correctamente.', null, '', 'Cerrar');                                    
+                  }
+              }
+          });
+        }
+      });
+
       $('#scan').click( function() 
         {          
           cordova.plugins.barcodeScanner.scan(
@@ -179,41 +215,7 @@
                   $("#cantidad").removeAttr("disabled");
                   scan.css("display", "none");
                   $("#productoDescription").html("<strong>"+data.data[0].NOMBRE+"</strong>");
-                  $("#producto").val(result.text);
-
-                  //Save Mov
-                  var producto = $("#producto").val();                  
-                  var cantidad = $("#cantidad").val();
-                  var concepto = $("#concepto").val();
-                  var dataSend = {
-                    'MOVIMIENTO': 'ENTRADA',
-                    'CONCEPTO': concepto,
-                    'TOTAL_PIEZAS': 1
-                  };
-                  $.ajax({
-                      type: 'POST',
-                      data: dataSend,
-                      url: base_url + '/movimiento_almacens',     
-                      beforeSend: function () {
-                        window.plugins.spinnerDialog.show();
-                      },                      
-                      error: function (xhr, status, error) {
-                          window.plugins.spinnerDialog.hide();
-                          var err = JSON.parse(xhr.responseText);
-                          if (!err.success) {
-                              navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
-                          }
-                      },
-                      success: function (data) {                                    
-                          if (data.success) {                              
-                              window.plugins.spinnerDialog.hide();
-                              goToPage('almacen.html');
-                              //navigator.notification.alert('El movimiento se aplicó correctamente.', null, '', 'Cerrar');                                    
-                          }
-                      }
-                  });
-                }
-
+                  $("#producto").val(result.text);                
                 if(data.data.lenght == 0){
                   scan.css("display", "block");                  
                   $("#cantidad").attr("disabled", true);
