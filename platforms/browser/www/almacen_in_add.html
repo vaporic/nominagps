@@ -75,13 +75,13 @@
                     <label style="text-align: left;">Producto</label>
                     <input type="hidden" name="producto" id="producto">
                     <a href="#" id="scan" style="color: white;background-color: black;padding: 25px;margin-top: 10px;margin-bottom: 10px;display: block;">ESCANEAR <span class="icon ion-qr-scanner" style="margin-left: 5px;"></span></a>
-                    <div id="productoDescription" style="text-align: left; margin-top: 30px; margin-bottom: 30px;"></div>
-                    <span id="errormsg"></span>
+                    <div id="productoDescription" style="text-align: left; margin-top: 30px; margin-bottom: 20px;"></div>
+                    
 
                     <span id="input-cantidad">
                         <label for="" style="float: left;">Cantidad</label>
                         <input type="number" name="cantidad" id="cantidad" class="w-input" required disabled>
-                    </span>
+                    </span>                  
 
                     <input type="submit" value="AGREGAR" class="w-button action-button grey" style="margin-top: 20px;" required>
 
@@ -93,6 +93,10 @@
         <div class="news-mask"></div>
             <div class="news-container" style="margin-top: 30px;width: 100%;">
                 <ul class="w-clearfix list-news" id="list-hot" style="width: 100%;"></ul>
+                <span id="input-concepto" style="display: none;">
+                  <label for="" style="float: left;">Concepto</label>
+                  <input type="text" name="concepto" id="concepto" class="w-input">
+                </span>
                 <a href="almacen.html" id="saveMov" style="display: none; background-color: #2ecc71;margin-bottom: 50px;" class="w-button action-button grey">GUARDAR</a>
             </div>
         </div>
@@ -131,7 +135,7 @@
         e.preventDefault();
         var prodcuto = $("#producto").val();
         var productoDescription = $("#productoDescription").html();
-        var cantidad = $("#cantidad").val();
+        var cantidad = $("#cantidad").val();        
 
         if(!prodcuto){
           navigator.notification.alert("Debes escanear un código QR de un producto", null, '', 'Cerrar');
@@ -140,13 +144,14 @@
         if(prodcuto && cantidad){
           $("#list-hot").append('<li class="list-item-new" style="width: 100%;"><a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1" style="display: block;width: 100%;"><div class="text-new"><h2 class="title-new" style="text-transform: uppercase;">'+productoDescription+'</h2><p class="description-new">Cantidad: '+cantidad+'</p></div></a></li>');      
           $("#saveMov").css("display", "block");
+          $(".input-concepto").css("display", "block");          
         }        
 
 
         $("#scan").css("display", "block");                  
         $("#cantidad").attr("disabled", true);
         $("#producto").val("");
-        $("#cantidad").val(0);
+        $("#cantidad").val(0);        
         $("#productoDescription").html("");
       });
 
@@ -175,13 +180,45 @@
                   scan.css("display", "none");
                   $("#productoDescription").html("<strong>"+data.data[0].NOMBRE+"</strong>");
                   $("#producto").val(result.text);
+
+                  //Save Mov
+                  var producto = $("#producto").val();                  
+                  var cantidad = $("#cantidad").val();
+                  var concepto = $("#concepto").val();
+                  var dataSend = {
+                    'MOVIMIENTO': 'ENTRADA',
+                    'CONCEPTO': concepto,
+                    'TOTAL_PIEZAS': 1
+                  };
+                  $.ajax({
+                      type: 'POST',
+                      data: dataSend,
+                      url: base_url + '/movimiento_almacens',     
+                      beforeSend: function () {
+                        window.plugins.spinnerDialog.show();
+                      },                      
+                      error: function (xhr, status, error) {
+                          window.plugins.spinnerDialog.hide();
+                          var err = JSON.parse(xhr.responseText);
+                          if (!err.success) {
+                              navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
+                          }
+                      },
+                      success: function (data) {                                    
+                          if (data.success) {                              
+                              window.plugins.spinnerDialog.hide();
+                              goToPage('almacen.html');
+                              //navigator.notification.alert('El movimiento se aplicó correctamente.', null, '', 'Cerrar');                                    
+                          }
+                      }
+                  });
                 }
 
                 if(data.data.lenght == 0){
                   scan.css("display", "block");                  
                   $("#cantidad").attr("disabled", true);
                   $("#producto").val("");
-                  $("#cantidad").val(0);  
+                  $("#cantidad").val(0);                                  
                 }
               }
             });  
