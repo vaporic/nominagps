@@ -78,7 +78,7 @@
 
         <div class="news-mask"></div>
             <div class="news-container" style="margin-top: 30px;">
-                <ul class="w-clearfix list-news" id="list-hot2"></ul>
+                <ul class="w-clearfix list-news" id="list-hot"></ul>
             </div>
         </div>
 
@@ -114,7 +114,7 @@
 
       $.ajax({
         type: 'GET',
-        url: base_url+'/incidencias?with=inmueble',
+        url: base_url+'/movimiento_almacens?limit=10&orderBy=ID_ALMMOV&sortedBy=desc',
         beforeSend: function(){
           $('.loading-mask').addClass('stop-loading');
         },  
@@ -133,25 +133,21 @@
                 if(data.data.length == 0){
                     $("#list-hot").html("<h3 style='text-align: center;'>No hay incidencias disponibles.</h3><div style='text-align: center;padding-bottom: 50px;'><i class='fa fa-3x fa-exclamation-triangle' aria-hidden='true'></i></div>");
                 }else{
-                    if(value.FOTO1){
-                        var foto_incidencia = value.FOTO1;
-                    }else{
-                        var foto_incidencia = 'https://via.placeholder.com/400x250/000000/FFFFFF/?text=INCIDENCIA';
-                    }
+                  var foto_incidencia = 'https://via.placeholder.com/400x250/000000/FFFFFF/?text=MOVIMIENTO';
                     
                     $("#list-hot").append('<li class="list-item-new">\n' +
                         '            <a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1">\n' +
                         '              <img src="'+foto_incidencia+'" style="width: 100%;">\n' +
                         '              <div class="text-new">\n' +
-                        '                <h2 class="title-new" style="text-transform: uppercase;">No. INCIDENCIA: '+value.ID_INCIDENCIA+'</h2>\n' +
-                        '                <p class="description-new">\n Usuario: ' +
-                                            value.USUARIO+
+                        '                <h2 class="title-new" style="text-transform: uppercase;">No. MOVIMIENTO: '+value.ID_ALMMOV+'</h2>\n' +
+                        '                <p class="description-new">\n Concepto: ' +
+                                            value.CONCEPTO+
                         '                </p>\n' +
                         '                <p class="description-new">\n Fecha: ' +
                                             value.SISTEMA+
                         '                </p>\n' +
-                        '                <p class="description-new">\n Inmueble: ' +
-                                            value.inmueble.RAZONSOCIAL+
+                        '                <p class="description-new" style="font-weight: bold;">\n MOVIMIENTO: ' +
+                                            value.MOVIMIENTO+
                         '                </p>\n' +
                         '                \n' +
                         '                <!--a href="empleados.html?sucursal='+value.NOINMUEBLE+'"><i class="icon ion-ios-people"></i> Ver Empleados</a-->\n' +
