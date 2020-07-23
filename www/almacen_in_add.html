@@ -142,10 +142,12 @@
           $("#saveMov").css("display", "block");
         }        
 
-        $("#cantidad").addAttr("disabled");
-        $("#productoDescription").html("");
-        $("#scan").show();
+
+        $("#scan").css("display", "block");                  
+        $("#cantidad").attr("disabled", true);
+        $("#producto").val("");
         $("#cantidad").val("");
+        $("#productoDescription").html("");
       });
 
       $('#scan').click( function() 
@@ -170,15 +172,15 @@
                 var scan = $("#scan");
                 if(data.success){                  
                   $("#cantidad").removeAttr("disabled");
-                  scan.hide();
+                  scan.css("display", "none");
                   $("#productoDescription").html("<strong>"+data.data[0].NOMBRE+"</strong>");
                   $("#producto").val(result.text);
                 }
 
                 if(data.data.lenght == 0){
-                  scan.show();
+                  scan.css("display", "block");                  
+                  $("#cantidad").attr("disabled", true);
                   $("#producto").val("");
-                  $("#cantidad").addAttr("disabled");
                   $("#cantidad").val("");
                 }
               }
