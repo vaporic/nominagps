@@ -144,7 +144,7 @@
         if(prodcuto && cantidad){
           $("#list-hot").append('<li class="list-item-new" style="width: 100%;"><a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1" style="display: block;width: 100%;"><div class="text-new"><h2 class="title-new" style="text-transform: uppercase;">'+productoDescription+'</h2><p class="description-new">Cantidad: '+cantidad+'</p></div></a></li>');      
           $("#saveMov").css("display", "block");
-          $(".input-concepto").css("display", "block");          
+          $("#input-concepto").css("display", "block");
         }        
 
 
@@ -156,9 +156,9 @@
       });
 
       //Save Mov
-      $("saveMov").on("click", function(e){
+      $("#saveMov").on("click", function(e){
         e.preventDefault();        
-        var producto = $("#producto").val();                  
+          var producto = $("#producto").val();                  
           var cantidad = $("#cantidad").val();
           var concepto = $("#concepto").val();
           var dataSend = {
@@ -188,11 +188,9 @@
                   }
               }
           });
-        }
       });
 
-      $('#scan').click( function() 
-        {          
+      $('#scan').click( function() {          
           cordova.plugins.barcodeScanner.scan(
           function (result) {          
             //navigator.notification.alert(result.text, null, '', 'Cerrar');    
@@ -222,8 +220,9 @@
                   $("#producto").val("");
                   $("#cantidad").val(0);                                  
                 }
+                }
               }
-            });  
+            });
           }, 
           function (error) {            
             navigator.notification.alert("Scanning failed: " + error, null, '', 'Cerrar');
