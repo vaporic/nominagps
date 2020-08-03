@@ -86,7 +86,7 @@
             <div class="separator-bottom"></div>
           </nav>
           <div class="wrapper-mask" data-ix="menu-mask"></div>
-          <div class="navbar-title">Nueva Incidencia</div>
+          <div class="navbar-title">Nueva Novedad</div>
           <div class="w-nav-button navbar-button left" id="menu-button" data-ix="hide-navbar-icons">
             <div class="navbar-button-icon home-icon">
               <div class="bar-home-icon top"></div>
@@ -236,7 +236,7 @@
             $.ajax({
                 type: 'POST',
                 data: dataSend,
-                url: base_url + '/incidencias',    
+                url: base_url + '/novedades',    
                 beforeSend: function(){
                     window.plugins.spinnerDialog.show();
                 },                     
@@ -250,7 +250,7 @@
                 success: function (data) {
                     //alert(data);
                     if (data.success) {                                    
-                        goToPage('incidencias.html');                        
+                        goToPage('novedades.html');                        
                         window.plugins.spinnerDialog.hide();
                     }else{
                         navigator.notification.alert('Error.', null, '', 'Cerrar');                                   
