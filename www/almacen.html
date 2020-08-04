@@ -77,8 +77,8 @@
           </div>
 
         <div class="news-mask"></div>
-            <div class="news-container" style="margin-top: 30px;">
-                <ul class="w-clearfix list-news" id="list-hot"></ul>
+            <div class="news-container" style="margin-top: 30px;display: block;width: 100%;">
+                <ul class="w-clearfix list-news" id="list-hot" style="display: block;"></ul>
             </div>
         </div>
 
@@ -137,7 +137,7 @@
                     
                     $("#list-hot").append('<li class="list-item-new">\n' +
                         '            <a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1">\n' +
-                        '              <img src="'+foto_incidencia+'" style="width: 100%;">\n' +
+                        '              <!--img src="'+foto_incidencia+'" style="width: 100%;"-->\n' +
                         '              <div class="text-new">\n' +
                         '                <h2 class="title-new" style="text-transform: uppercase;">No. MOVIMIENTO: '+value.ID_ALMMOV+'</h2>\n' +
                         '                <p class="description-new">\n Concepto: ' +
