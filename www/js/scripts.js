@@ -66,7 +66,11 @@ $(function() {
                 }
             },
             success: function(data) {
+                console.log(data);
+
                 if(data.success){
+
+                    console.log(data);
 
                     // Save Language
                     var lang = $("#lang").val();
@@ -78,7 +82,7 @@ $(function() {
                     // Save Token Login
                     window.localStorage.setItem("auth", "true");
 
-                    window.localStorage.setItem("icem_customer", data.data.id);
+                    window.localStorage.setItem("id_user", data.data);
 
                     var dataRedirect = $this.attr('data-redirect');               
                     goToPage(dataRedirect);

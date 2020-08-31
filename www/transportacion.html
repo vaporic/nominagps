@@ -210,7 +210,7 @@
 
       $.ajax({
         type: 'GET',
-        url: base_url+'/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL;NOINMUEBLE',
+        url: base_url+'/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL;NOINMUEBLE&user_id='+window.localStorage.getItem("id_user"),
         beforeSend: function(){
           $('.loading-mask').addClass('stop-loading');
         },  
