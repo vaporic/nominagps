@@ -160,7 +160,7 @@
 
         $.ajax({
             type: "GET",
-            url: 'http://gps.somostusideas.info/api/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL', 
+            url: 'http://gps.somostusideas.info/api/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL&user_id='+window.localStorage.getItem("id_user"),
             dataType: "json",
             success: function(data){
                 console.log(data);
