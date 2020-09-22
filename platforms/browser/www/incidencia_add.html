@@ -160,7 +160,7 @@
 
         $.ajax({
             type: "GET",
-            url: 'http://gps.somostusideas.info/api/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL', 
+            url: 'http://gps.somostusideas.info/api/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL&user_id='+window.localStorage.getItem("id_user"),
             dataType: "json",
             success: function(data){
                 console.log(data);
@@ -229,7 +229,7 @@
                 'FOTO1': photoNew1,
                 'FOTO2': photoNew2,
                 'FOTO3': photoNew3,
-                'BITACORA': 'Registrado desde la APP'
+                'USER_ID': window.localStorage.getItem("id_user")
             };
 
             // TODO: Guardar Datos

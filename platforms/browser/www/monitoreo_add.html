@@ -86,7 +86,7 @@
             <div class="separator-bottom"></div>
           </nav>
           <div class="wrapper-mask" data-ix="menu-mask"></div>
-          <div class="navbar-title">Nueva Novedad</div>
+          <div class="navbar-title">Nuevo Monitoreo</div>
           <div class="w-nav-button navbar-button left" id="menu-button" data-ix="hide-navbar-icons">
             <div class="navbar-button-icon home-icon">
               <div class="bar-home-icon top"></div>
@@ -101,6 +101,14 @@
 
           <div style="padding-top: 20px; text-align: center;">
             <form id="form-insidencia" style="padding: 20px;">
+                <label for="select_tipo" style="text-align: left;">Tipo</label>
+                <select name="select_tipo" class="w-input" id="select_tipo" required>
+                    <option value="Apertura de Terminal">Apertura de Terminal</option>
+                    <option value="#">Cierre de Terminal</option>
+                    <option value="#">Encendido de Luminarias</option>
+                    <option value="#">Apagado de Luminarias</option>
+                    <option value="#">Bitacora de Terminal</option>
+                </select>
                 <label for="select_inmueble" style="text-align: left;">Inmueble</label>
                 <select name="select_inmueble" class="w-input" id="select_inmueble" required></select>
                 <label for="fecha" style="text-align: left;">Fecha</label>
@@ -114,10 +122,6 @@
                 <a href="#" class="take-photo2 w-button action-button grey"><i class="icon ion-camera"></i> Tomar Foto 2</a>
                 <div id="photo2" style="margin-top: 10px;">
                     <img src="" alt="" id="photo2img">
-                </div>
-                <a href="#" class="take-photo2 w-button action-button grey"><i class="icon ion-camera"></i> Tomar Foto 3</a>
-                <div id="photo3" style="margin-top: 10px;">
-                    <img src="" alt="" id="photo3img">
                 </div>
                 <input type="submit" value="CREAR" class="w-button action-button grey" style="margin-top: 20px;" required>
             </form>
@@ -224,7 +228,7 @@
                 'ID_INMUEBLE': $("#select_inmueble").val(),
                 'FECHA': $("#fecha").val(),
                 'DESCRIPCION': $("#descripcion").val(),
-                'USUARIO': window.localStorage.getItem("id_user"),
+                'USUARIO': 'usuario',
                 'SISTEMA': datetime,
                 'FOTO1': photoNew1,
                 'FOTO2': photoNew2,
@@ -236,7 +240,7 @@
             $.ajax({
                 type: 'POST',
                 data: dataSend,
-                url: base_url + '/novedades',    
+                url: base_url + '/incidencias',    
                 beforeSend: function(){
                     window.plugins.spinnerDialog.show();
                 },                     
@@ -250,7 +254,7 @@
                 success: function (data) {
                     //alert(data);
                     if (data.success) {                                    
-                        goToPage('novedades.html');                        
+                        goToPage('incidencias.html');                        
                         window.plugins.spinnerDialog.hide();
                     }else{
                         navigator.notification.alert('Error.', null, '', 'Cerrar');                                   
