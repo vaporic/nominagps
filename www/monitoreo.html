@@ -212,7 +212,7 @@
 
       $.ajax({
         type: 'GET',
-        url: base_url+'/incidencias?with=inmueble',
+        url: base_url+'/monitoreos?with=inmueble',
         beforeSend: function(){
           $('.loading-mask').addClass('stop-loading');
         },  
@@ -256,14 +256,14 @@
                         '            <a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1">\n' +
                         '              <img src="'+foto_incidencia+'" style="width: 100%;">\n' +
                         '              <div class="text-new">\n' +
-                        '                <h2 class="title-new" style="text-transform: uppercase;">No. INCIDENCIA: '+value.ID_INCIDENCIA+'</h2>\n' +
+                        '                <h2 class="title-new" style="text-transform: uppercase;">No. MONITOREO: '+value.ID_INCIDENCIA+'</h2>\n' +
                         '                <p class="description-new">\n Usuario: ' +
                                             value.USUARIO+
                         '                </p>\n' +
                         '                <p class="description-new">\n Fecha: ' +
                                             value.SISTEMA+
                         '                </p>\n' +
-                        '                <p class="description-new">\n Inmueble: ' +
+                        '                <p class="description-new">\n Sucursal: ' +
                                             value.inmueble.RAZONSOCIAL+
                         '                </p>\n' +
                         '                \n' +
