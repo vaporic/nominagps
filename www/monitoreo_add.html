@@ -179,54 +179,9 @@
         var onSuccess = function(position) {          
           coordenadas_latitud = position.coords.latitude;
           coordenadas_longitud = position.coords.longitude;
-        }
 
-        function onSuccessCamera1(imageData) {
-            //window.plugins.spinnerDialog.hide();
-            var image = document.getElementById('photo1img');
-
-            image.src = "data:image/jpeg;base64," + imageData;
-            photoNew1 = image.src;
-
-            window.plugins.spinnerDialog.hide();
-
-            // Get Location
-            //navigator.geolocation.getCurrentPosition(onSuccess, onError);
-        }
-
-        function onSuccessCamera2(imageData) {
-            //window.plugins.spinnerDialog.hide();
-            var image = document.getElementById('photo1img');
-
-            image.src = "data:image/jpeg;base64," + imageData;
-            photoNew2 = image.src;
-
-            window.plugins.spinnerDialog.hide();
-
-            // Get Location
-            //navigator.geolocation.getCurrentPosition(onSuccess, onError);
-        }
-
-        function onSuccessCamera3(imageData) {
-            //window.plugins.spinnerDialog.hide();
-            var image = document.getElementById('photo1img');
-
-            image.src = "data:image/jpeg;base64," + imageData;
-            photoNew3 = image.src;
-
-            window.plugins.spinnerDialog.hide();
-
-            // Get Location
-            //navigator.geolocation.getCurrentPosition(onSuccess, onError);
-        }
-
-        $("#form-insidencia").on("submit", function(e){
-            e.preventDefault();
-
-            navigator.geolocation.getCurrentPosition(onSuccess, onError);
-
-            // Save
-            var currentdate = new Date(); 
+          // Save
+          var currentdate = new Date(); 
             var datetime = currentdate.getFullYear() + "-"
                         + (currentdate.getMonth()+1)  + "-" 
                         + currentdate.getDate() + " "  
@@ -272,6 +227,51 @@
                     }
                 }
             });
+        }
+
+        function onSuccessCamera1(imageData) {
+            //window.plugins.spinnerDialog.hide();
+            var image = document.getElementById('photo1img');
+
+            image.src = "data:image/jpeg;base64," + imageData;
+            photoNew1 = image.src;
+
+            window.plugins.spinnerDialog.hide();
+
+            // Get Location
+            //navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
+
+        function onSuccessCamera2(imageData) {
+            //window.plugins.spinnerDialog.hide();
+            var image = document.getElementById('photo1img');
+
+            image.src = "data:image/jpeg;base64," + imageData;
+            photoNew2 = image.src;
+
+            window.plugins.spinnerDialog.hide();
+
+            // Get Location
+            //navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
+
+        function onSuccessCamera3(imageData) {
+            //window.plugins.spinnerDialog.hide();
+            var image = document.getElementById('photo1img');
+
+            image.src = "data:image/jpeg;base64," + imageData;
+            photoNew3 = image.src;
+
+            window.plugins.spinnerDialog.hide();
+
+            // Get Location
+            //navigator.geolocation.getCurrentPosition(onSuccess, onError);
+        }
+
+        $("#form-insidencia").on("submit", function(e){
+            e.preventDefault();
+
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
         });
 
         function onFailCamera(message) {
