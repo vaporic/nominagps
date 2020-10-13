@@ -154,7 +154,7 @@
   <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
   <script>
     $(document).on("ready", function(){
-        var base_url = 'http://gps.somostusideas.info/api';
+        var base_url = 'http://app.corporativomultiservicios.com/api';
         var goToPage = function (hrefPage) {
             document.location = hrefPage;
         };
@@ -166,7 +166,7 @@
 
         $.ajax({
             type: "GET",
-            url: 'http://gps.somostusideas.info/api/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL&user_id='+window.localStorage.getItem("id_user"),
+            url: 'http://app.corporativomultiservicios.com/api/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL&user_id='+window.localStorage.getItem("id_user"),
             dataType: "json",
             success: function(data){
                 console.log(data);
