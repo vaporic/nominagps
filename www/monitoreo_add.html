@@ -161,6 +161,8 @@
         var photoNew1 = '';
         var photoNew2 = '';
         var photoNew3 = '';
+        var coordenadas_latitud;
+        var coordenadas_longitud;
 
         $.ajax({
             type: "GET",
@@ -173,6 +175,59 @@
                 });
             }
         });
+
+        var onSuccess = function(position) {          
+          coordenadas_latitud = position.coords.latitude;
+          coordenadas_longitud = position.coords.longitude;
+
+          // Save
+          var currentdate = new Date(); 
+            var datetime = currentdate.getFullYear() + "-"
+                        + (currentdate.getMonth()+1)  + "-" 
+                        + currentdate.getDate() + " "  
+                        + currentdate.getHours() + ":"  
+                        + currentdate.getMinutes() + ":" 
+                        + currentdate.getSeconds();
+            var dataSend = {
+                'ID_INMUEBLE': $("#select_inmueble").val(),
+                'FECHA': $("#fecha").val(),
+                'DESCRIPCION': $("#descripcion").val(),
+                'USUARIO': 'usuario',
+                'SISTEMA': datetime,
+                'FOTO1': photoNew1,
+                'FOTO2': photoNew2,
+                'FOTO3': photoNew3,
+                'USER_ID': window.localStorage.getItem("id_user"),
+                'LATITUD': coordenadas_latitud,
+                'LONGITUD': coordenadas_longitud
+            };
+
+            // TODO: Guardar Datos
+            $.ajax({
+                type: 'POST',
+                data: dataSend,
+                url: base_url + '/monitoreos',    
+                beforeSend: function(){
+                    window.plugins.spinnerDialog.show();
+                },                     
+                error: function (xhr, status, error) {
+                    window.plugins.spinnerDialog.hide();
+                    var err = JSON.parse(xhr.responseText);
+                    if (!err.success) {
+                        navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
+                    }
+                },
+                success: function (data) {
+                    //alert(data);
+                    if (data.success) {                                    
+                        goToPage('monitoreo.html');                        
+                        window.plugins.spinnerDialog.hide();
+                    }else{
+                        navigator.notification.alert('Error.', null, '', 'Cerrar');                                   
+                    }
+                }
+            });
+        }
 
         function onSuccessCamera1(imageData) {
             //window.plugins.spinnerDialog.hide();
@@ -216,56 +271,18 @@
         $("#form-insidencia").on("submit", function(e){
             e.preventDefault();
 
-            // Save
-            var currentdate = new Date(); 
-            var datetime = currentdate.getFullYear() + "-"
-                        + (currentdate.getMonth()+1)  + "-" 
-                        + currentdate.getDate() + " "  
-                        + currentdate.getHours() + ":"  
-                        + currentdate.getMinutes() + ":" 
-                        + currentdate.getSeconds();
-            var dataSend = {
-                'ID_INMUEBLE': $("#select_inmueble").val(),
-                'FECHA': $("#fecha").val(),
-                'DESCRIPCION': $("#descripcion").val(),
-                'USUARIO': 'usuario',
-                'SISTEMA': datetime,
-                'FOTO1': photoNew1,
-                'FOTO2': photoNew2,
-                'FOTO3': photoNew3,
-                'USER_ID': window.localStorage.getItem("id_user")
-            };
-
-            // TODO: Guardar Datos
-            $.ajax({
-                type: 'POST',
-                data: dataSend,
-                url: base_url + '/incidencias',    
-                beforeSend: function(){
-                    window.plugins.spinnerDialog.show();
-                },                     
-                error: function (xhr, status, error) {
-                    window.plugins.spinnerDialog.hide();
-                    var err = JSON.parse(xhr.responseText);
-                    if (!err.success) {
-                        navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
-                    }
-                },
-                success: function (data) {
-                    //alert(data);
-                    if (data.success) {                                    
-                        goToPage('incidencias.html');                        
-                        window.plugins.spinnerDialog.hide();
-                    }else{
-                        navigator.notification.alert('Error.', null, '', 'Cerrar');                                   
-                    }
-                }
-            });
+            navigator.geolocation.getCurrentPosition(onSuccess, onError);
         });
 
         function onFailCamera(message) {
             window.plugins.spinnerDialog.hide();
             navigator.notification.alert('Failed because: ' + message, null, '', 'Cerrar');
+        }
+
+        function onError(error) {
+            window.plugins.spinnerDialog.hide();
+            navigator.notification.alert('code: '    + error.code    + '\n' +
+                'message: ' + error.message + '\n', null, '', 'Cerrar');
         }
 
         $(".take-photo1").on("click", function () {
