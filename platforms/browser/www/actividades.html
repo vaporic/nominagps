@@ -240,18 +240,23 @@
                     '            <a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1">\n' +
                     '              <img src="'+foto_incidencia+'" style="width: 100%;">\n' +
                     '              <div class="text-new">\n' +
-                    '                <h2 class="title-new" style="text-transform: uppercase;">No. ACTIVIDADES: '+value.ID_ACTIVIDADES+'</h2>\n' +
-                    '                <p class="description-new">\n Usuario: ' +
-                                        value.USUARIO+
+                    '                <h2 class="title-new" style="text-transform: uppercase;">No. ACTIVIDAD: '+value.id+'</h2>\n' +
+                    '                <p class="description-new">\n Frecuencia: ' +
+                                        value.frecuencia+
                     '                </p>\n' +
-                    '                <p class="description-new">\n Fecha: ' +
-                                        value.SISTEMA+
+                    '                <p class="description-new">\n Concepto: ' +
+                                        value.concepto+
                     '                </p>\n' +
-                    '                <p class="description-new">\n Sucursal: ' +
-                                        value.inmueble.RAZONSOCIAL+
+                    '                <p class="description-new">\n Ruta: ' +
+                                        value.ruta+
                     '                </p>\n' +
-                    '                \n' +
-                    '                <!--a href="empleados.html?sucursal='+value.NOINMUEBLE+'"><i class="icon ion-ios-people"></i> Ver Empleados</a-->\n' +
+                    '                <p class="description-new">\n Estacion: ' +
+                                        value.estacion+
+                    '                </p>\n' +
+                    '                <p class="description-new">\n Observaciones: ' +
+                                        value.observaciones+
+                    '                </p>\n' +
+                    '                \n' +  
                     '              </div>\n' +
                     '            </a>\n' +
                     '          </li>');
