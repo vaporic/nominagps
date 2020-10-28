@@ -224,55 +224,39 @@
         },
         success: function(data) {
           if(data.success){
-
-            console.log(data.data);
-
-            $.each(data.data, function(index, value){
-
-              /*$("#list-hot").append('<li class="list-item-new">\n' +
-                  '            <a class="w-inline-block link-blog-list" href="javascript: void();" data-load="1">\n' +
-                  '              <img src="'+assets_url+value.featured_image+'" style="width: 100%;">\n' +
-                  '              <div class="text-new">\n' +
-                  '                <h2 class="title-new" style="text-transform: uppercase;">'+value.name+'</h2>\n' +
-                  '                <p class="description-new">\n' +
-                                    value.address+
-                  '                </p>\n' +
-                  '                \n' +
-                  '                <a href="'+value.google_map+'" target="_blank"><i class="icon ion-location"></i> Ver mapa</a>\n' +
-                  '              </div>\n' +
-                  '            </a>\n' +
-                  '          </li>');*/
-
-                if(data.data.length == 0){
-                    $("#list-hot").html("<h3 style='text-align: center;'>No hay actividades disponibles.</h3><div style='text-align: center;padding-bottom: 50px;'><i class='fa fa-3x fa-exclamation-triangle' aria-hidden='true'></i></div>");
+            
+            console.log(data.data.length);
+            if(data.data.length == 0){
+              $("#list-hot").html("<h3 style='text-align: center;'>No hay actividades disponibles.</h3><div style='text-align: center;padding-bottom: 50px;'><i class='fa fa-3x fa-exclamation-triangle' aria-hidden='true'></i></div>");
+            }else{
+              $.each(data.data, function(index, value){
+                if(value.foto_1){
+                  var foto_incidencia = value.foto_1;
                 }else{
-                    if(value.FOTO1){
-                        var foto_incidencia = value.FOTO1;
-                    }else{
-                        var foto_incidencia = 'https://via.placeholder.com/400x250/000000/FFFFFF/?text=ACTIVIDADES';
-                    }
-                    
-                    $("#list-hot").append('<li class="list-item-new">\n' +
-                        '            <a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1">\n' +
-                        '              <img src="'+foto_incidencia+'" style="width: 100%;">\n' +
-                        '              <div class="text-new">\n' +
-                        '                <h2 class="title-new" style="text-transform: uppercase;">No. ACTIVIDADES: '+value.ID_ACTIVIDADES+'</h2>\n' +
-                        '                <p class="description-new">\n Usuario: ' +
-                                            value.USUARIO+
-                        '                </p>\n' +
-                        '                <p class="description-new">\n Fecha: ' +
-                                            value.SISTEMA+
-                        '                </p>\n' +
-                        '                <p class="description-new">\n Sucursal: ' +
-                                            value.inmueble.RAZONSOCIAL+
-                        '                </p>\n' +
-                        '                \n' +
-                        '                <!--a href="empleados.html?sucursal='+value.NOINMUEBLE+'"><i class="icon ion-ios-people"></i> Ver Empleados</a-->\n' +
-                        '              </div>\n' +
-                        '            </a>\n' +
-                        '          </li>');
+                    var foto_incidencia = 'https://via.placeholder.com/400x250/000000/FFFFFF/?text=ACTIVIDADES';
                 }
-            });            
+                
+                $("#list-hot").append('<li class="list-item-new">\n' +
+                    '            <a class="w-inline-block link-blog-list" href="javascript: void(0);" data-load="1">\n' +
+                    '              <img src="'+foto_incidencia+'" style="width: 100%;">\n' +
+                    '              <div class="text-new">\n' +
+                    '                <h2 class="title-new" style="text-transform: uppercase;">No. ACTIVIDADES: '+value.ID_ACTIVIDADES+'</h2>\n' +
+                    '                <p class="description-new">\n Usuario: ' +
+                                        value.USUARIO+
+                    '                </p>\n' +
+                    '                <p class="description-new">\n Fecha: ' +
+                                        value.SISTEMA+
+                    '                </p>\n' +
+                    '                <p class="description-new">\n Sucursal: ' +
+                                        value.inmueble.RAZONSOCIAL+
+                    '                </p>\n' +
+                    '                \n' +
+                    '                <!--a href="empleados.html?sucursal='+value.NOINMUEBLE+'"><i class="icon ion-ios-people"></i> Ver Empleados</a-->\n' +
+                    '              </div>\n' +
+                    '            </a>\n' +
+                    '          </li>');
+              });
+            }            
           }                    
         }
       });

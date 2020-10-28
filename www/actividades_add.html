@@ -129,7 +129,6 @@
                   <option value="">CIUDAD AZTECA</option>              
                   <option value="">LA QUEBRADA</option>                
                 </select>
-                <!--select name="select_inmueble" class="w-input" id="select_inmueble" required></select-->
                 <label for="fecha" style="text-align: left;">Fecha</label>
                 <input type="date" class="w-input" id="fecha" required>
                 <label for="descripcion" style="text-align: left;">Observaciones</label>
@@ -179,21 +178,8 @@
         };
         var photoNew1 = '';
         var photoNew2 = '';
-        var photoNew3 = '';
         var coordenadas_latitud;
         var coordenadas_longitud;
-
-        $.ajax({
-            type: "GET",
-            url: 'https://app.corporativomultiservicios.com/api/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL&user_id='+window.localStorage.getItem("id_user"),
-            dataType: "json",
-            success: function(data){
-                console.log(data);
-                $.each(data.data,function(key, registro) {
-                    $("#select_inmueble").append('<option value='+registro.ID_INMUEBLE+'>'+registro.RAZONSOCIAL+'</option>');
-                });
-            }
-        });
 
         var onSuccess = function(position) {          
           coordenadas_latitud = position.coords.latitude;
@@ -201,48 +187,48 @@
 
           // Save
           var currentdate = new Date(); 
-            var datetime = currentdate.getFullYear() + "-"
-                        + (currentdate.getMonth()+1)  + "-" 
-                        + currentdate.getDate() + " "  
-                        + currentdate.getHours() + ":"  
-                        + currentdate.getMinutes() + ":" 
-                        + currentdate.getSeconds();
-            var dataSend = {
-                'frecuencia': $("#select_frecuencia").val(),
-                'concepto': $("#select_concepto").val(),
-                'ruta': $("#select_ruta").val(),
-                'estacion': $("#select_estacion").val(),
-                'fecha': datetime,
-                'observaciones': $("#descripcion").val(),
-                'foto_1': photoNew1,
-                'foto_2': photoNew2
-            };
+          var datetime = currentdate.getFullYear() + "-"
+                      + (currentdate.getMonth()+1)  + "-" 
+                      + currentdate.getDate() + " "  
+                      + currentdate.getHours() + ":"  
+                      + currentdate.getMinutes() + ":" 
+                      + currentdate.getSeconds();
+          var dataSend = {
+              'frecuencia': $("#select_frecuencia").val(),
+              'concepto': $("#select_concepto").val(),
+              'ruta': $("#select_ruta").val(),
+              'estacion': $("#select_estacion").val(),
+              'fecha': datetime,
+              'observaciones': $("#descripcion").val(),
+              'foto_1': photoNew1,
+              'foto_2': photoNew2
+          };
 
-            // TODO: Guardar Datos
-            $.ajax({
-                type: 'POST',
-                data: dataSend,
-                url: base_url + '/actividades',    
-                beforeSend: function(){
-                    window.plugins.spinnerDialog.show();
-                },                     
-                error: function (xhr, status, error) {
-                    window.plugins.spinnerDialog.hide();
-                    var err = JSON.parse(xhr.responseText);
-                    if (!err.success) {
-                        navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
-                    }
-                },
-                success: function (data) {
-                    //alert(data);
-                    if (data.success) {                                    
-                        goToPage('monitoreo.html');                        
-                        window.plugins.spinnerDialog.hide();
-                    }else{
-                        navigator.notification.alert('Error.', null, '', 'Cerrar');                                   
-                    }
-                }
-            });
+          // TODO: Guardar Datos
+          $.ajax({
+              type: 'POST',
+              data: dataSend,
+              url: base_url + '/actividades',    
+              beforeSend: function(){
+                  window.plugins.spinnerDialog.show();
+              },                     
+              error: function (xhr, status, error) {
+                  window.plugins.spinnerDialog.hide();
+                  var err = JSON.parse(xhr.responseText);
+                  if (!err.success) {
+                      navigator.notification.alert(err.message, null, '', 'Cerrar');                                    
+                  }
+              },
+              success: function (data) {
+                  alert(data);
+                  if (data.success) {                                    
+                      goToPage('actividades.html');                        
+                      window.plugins.spinnerDialog.hide();
+                  }else{
+                      navigator.notification.alert('Error.', null, '', 'Cerrar');                                   
+                  }
+              }
+          });
         }
 
         function onSuccessCamera1(imageData) {
@@ -264,19 +250,6 @@
 
             image.src = "data:image/jpeg;base64," + imageData;
             photoNew2 = image.src;
-
-            window.plugins.spinnerDialog.hide();
-
-            // Get Location
-            //navigator.geolocation.getCurrentPosition(onSuccess, onError);
-        }
-
-        function onSuccessCamera3(imageData) {
-            //window.plugins.spinnerDialog.hide();
-            var image = document.getElementById('photo1img');
-
-            image.src = "data:image/jpeg;base64," + imageData;
-            photoNew3 = image.src;
 
             window.plugins.spinnerDialog.hide();
 
@@ -321,20 +294,6 @@
 
             if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
                 navigator.camera.getPicture(onSuccessCamera2, onFailCamera, {
-                    quality: 30,
-                    destinationType: Camera.DestinationType.DATA_URL
-                });
-            } else {
-                alert('no navigator.camera - did you install the plugin?');
-            }
-        });
-
-        $(".take-photo3").on("click", function () {
-            window.plugins.spinnerDialog.show();
-            $this = $(this);
-
-            if(typeof navigator !== 'undefined' && typeof navigator.camera !== 'undefined') {
-                navigator.camera.getPicture(onSuccessCamera3, onFailCamera, {
                     quality: 30,
                     destinationType: Camera.DestinationType.DATA_URL
                 });
