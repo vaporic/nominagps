@@ -103,31 +103,19 @@
             <form id="form-insidencia" style="padding: 20px;">
                 <label for="select_frecuencia" style="text-align: left;">Frecuencia</label>
                 <select name="select_frecuencia" class="w-input" id="select_frecuencia" required>
-                    <option value="Diario">Diario</option>
-                    <option value="Semanal">Semanal</option>
-                    <option value="Mensual">Mensual</option>
-                    <option value="Trimestral">Trimestral</option>
+                  <option value="">Selecciona una frecuencia</option>
                 </select>
                 <label for="select_concepto" style="text-align: left;">Concepto</label>
                 <select name="select_concepto" class="w-input" id="select_concepto" required>
-                    <option value="">Selecciona un tipo</option>
-                    <option value="Apertura de Terminal">Apertura de Terminal</option>
-                    <option value="Cierre de Terminal">Cierre de Terminal</option>
-                    <option value="Encendido de Luminarias">Encendido de Luminarias</option>
-                    <option value="Apagado de Luminarias">Apagado de Luminarias</option>
-                    <option value="Bitacora de Terminal">Bitacora de Terminal</option>
+                    <option value="">Selecciona un concepto</option>                
                 </select>
                 <label for="select_ruta" style="text-align: left;">Ruta</label>
                 <select name="select_ruta" id="select_ruta" class="w-input">
-                  <option value="MEXIBUS 1">MEXIBUS 1</option>
-                  <option value="MEXIBUS 2">MEXIBUS 2</option>
-                  <option value="MEXIBUS 3">MEXIBUS 3</option>
-                  <option value="MEXIBUS 4">MEXIBUS 4</option>
+                  <option value="">Selecciona una ruta</option>
                 </select>
                 <label for="select_estacion" style="text-align: left;">Estación</label>
                 <select name="select_estacion" id="select_estacion" class="w-input">
-                  <option value="CIUDAD AZTECA">CIUDAD AZTECA</option>              
-                  <option value="LA QUEBRADA">LA QUEBRADA</option>                
+                  <option value="">Selecciona una estación</option>
                 </select>
                 <label for="fecha" style="text-align: left;">Fecha</label>
                 <input type="date" class="w-input" id="fecha" required>
@@ -180,6 +168,62 @@
         var photoNew2 = '';
         var coordenadas_latitud;
         var coordenadas_longitud;
+
+        $.ajax({
+          type: "GET",
+          url: 'https://app.corporativomultiservicios.com/api/get_frecuencia',
+          dataType: "json",
+          success: function(data){
+              console.log(data);
+              $.each(data.data,function(key, registro) {
+                  $("#select_frecuencia").append('<option data-id='+registro.ID_CLAS+' value='+registro.DESCRIPCION+'>'+registro.DESCRIPCION+'</option>');
+              });
+          }
+        });
+
+        $("#select_frecuencia").on("change", function(){
+          var id = $(this).find(':selected').data('id');
+
+          $.ajax({
+            type: "GET",
+            url: 'https://app.corporativomultiservicios.com/api/get_conceptos/'+id,
+            dataType: "json",
+            success: function(data){
+                $("#select_concepto").html("");
+                $.each(data.data,function(key, registro) {
+                    $("#select_concepto").append('<option value='+registro.DESCRIPCION+'>'+registro.DESCRIPCION+'</option>');
+                });
+            }
+          });
+        });
+
+        $.ajax({
+          type: "GET",
+          url: 'https://app.corporativomultiservicios.com/api/get_rutas',
+          dataType: "json",
+          success: function(data){
+              console.log(data);
+              $.each(data.data,function(key, registro) {
+                  $("#select_ruta").append('<option data-id='+registro.ID_CLAS+' value='+registro.DESCRIPCION+'>'+registro.DESCRIPCION+'</option>');
+              });
+          }
+        });
+
+        $("#select_ruta").on("change", function(){
+          var id = $(this).find(':selected').data('id');
+
+          $.ajax({
+            type: "GET",
+            url: 'https://app.corporativomultiservicios.com/api/get_estaciones/'+id,
+            dataType: "json",
+            success: function(data){
+                $("#select_estacion").html("");
+                $.each(data.data,function(key, registro) {
+                    $("#select_estacion").append('<option value='+registro.DESCRIPCION+'>'+registro.DESCRIPCION+'</option>');
+                });
+            }
+          });
+        });
 
         var onSuccess = function(position) {          
           coordenadas_latitud = position.coords.latitude;
