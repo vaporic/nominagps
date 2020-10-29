@@ -103,6 +103,14 @@
             <form id="form-insidencia" style="padding: 20px;">
                 <label for="select_inmueble" style="text-align: left;">Inmueble</label>
                 <select name="select_inmueble" class="w-input" id="select_inmueble" required></select>
+                <label for="select_ruta" style="text-align: left;">Ruta</label>
+                <select name="select_ruta" id="select_ruta" class="w-input">
+                  <option value="">Selecciona una ruta</option>
+                </select>
+                <label for="select_estacion" style="text-align: left;">Estación</label>
+                <select name="select_estacion" id="select_estacion" class="w-input">
+                  <option value="">Selecciona una estación</option>
+                </select>
                 <label for="fecha" style="text-align: left;">Fecha</label>
                 <input type="date" class="w-input" id="fecha" required>
                 <label for="descripcion" style="text-align: left;">Descripción</label>
@@ -157,6 +165,34 @@
         var photoNew1 = '';
         var photoNew2 = '';
         var photoNew3 = '';
+
+        $.ajax({
+          type: "GET",
+          url: 'https://apinomina.softcodersteam.com/api/get_rutas',
+          dataType: "json",
+          success: function(data){
+              console.log(data);
+              $.each(data.data,function(key, registro) {
+                  $("#select_ruta").append('<option data-id='+registro.ID_CLAS+' value='+registro.DESCRIPCION+'>'+registro.DESCRIPCION+'</option>');
+              });
+          }
+        });
+
+        $("#select_ruta").on("change", function(){
+          var id = $(this).find(':selected').data('id');
+
+          $.ajax({
+            type: "GET",
+            url: 'https://apinomina.softcodersteam.com/api/get_estaciones/'+id,
+            dataType: "json",
+            success: function(data){
+                $("#select_estacion").html("");
+                $.each(data.data,function(key, registro) {
+                    $("#select_estacion").append('<option value='+registro.DESCRIPCION+'>'+registro.DESCRIPCION+'</option>');
+                });
+            }
+          });
+        });
 
         $.ajax({
             type: "GET",
@@ -229,7 +265,9 @@
                 'FOTO1': photoNew1,
                 'FOTO2': photoNew2,
                 'FOTO3': photoNew3,
-                'USER_ID': window.localStorage.getItem("id_user")
+                'USER_ID': window.localStorage.getItem("id_user"),
+                'ruta': $("#select_ruta").val(),
+                'estacion': $("#select_estacion").val()
             };
 
             // TODO: Guardar Datos
