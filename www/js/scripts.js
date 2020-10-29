@@ -3,7 +3,7 @@ document.addEventListener("touchstart", function(){}, true);
 $(function() {
     'use strict';
 
-    var base_url = 'https://app.corporativomultiservicios.com/api';
+    var base_url = 'https://apinomina.softcodersteam.com/api';
 
     var dataSplash = $('.page-content').attr('data-splash');
     var dataRedirect = $('.page-content').attr('data-redirect');

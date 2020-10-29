@@ -154,7 +154,7 @@
   <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
   <script>
     $(document).on("ready", function(){
-        var base_url = 'https://app.corporativomultiservicios.com/api';
+        var base_url = 'https://apinomina.softcodersteam.com/api';
         var goToPage = function (hrefPage) {
             document.location = hrefPage;
         };
@@ -166,7 +166,7 @@
 
         $.ajax({
             type: "GET",
-            url: 'https://app.corporativomultiservicios.com/api/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL&user_id='+window.localStorage.getItem("id_user"),
+            url: 'https://apinomina.softcodersteam.com/api/inmuebles?filter=ID_INMUEBLE;RAZONSOCIAL&user_id='+window.localStorage.getItem("id_user"),
             dataType: "json",
             success: function(data){
                 console.log(data);

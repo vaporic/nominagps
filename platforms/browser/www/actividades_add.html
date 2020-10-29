@@ -160,7 +160,7 @@
   <!--[if lte IE 9]><script src="js/placeholders.min.js"></script><![endif]-->
   <script>
     $(document).on("ready", function(){
-        var base_url = 'https://app.corporativomultiservicios.com/api';
+        var base_url = 'https://apinomina.softcodersteam.com/api';
         var goToPage = function (hrefPage) {
             document.location = hrefPage;
         };
@@ -171,7 +171,7 @@
 
         $.ajax({
           type: "GET",
-          url: 'https://app.corporativomultiservicios.com/api/get_frecuencia',
+          url: 'https://apinomina.softcodersteam.com/api/get_frecuencia',
           dataType: "json",
           success: function(data){
               console.log(data);
@@ -186,7 +186,7 @@
 
           $.ajax({
             type: "GET",
-            url: 'https://app.corporativomultiservicios.com/api/get_conceptos/'+id,
+            url: 'https://apinomina.softcodersteam.com/api/get_conceptos/'+id,
             dataType: "json",
             success: function(data){
                 $("#select_concepto").html("");
@@ -199,7 +199,7 @@
 
         $.ajax({
           type: "GET",
-          url: 'https://app.corporativomultiservicios.com/api/get_rutas',
+          url: 'https://apinomina.softcodersteam.com/api/get_rutas',
           dataType: "json",
           success: function(data){
               console.log(data);
@@ -214,7 +214,7 @@
 
           $.ajax({
             type: "GET",
-            url: 'https://app.corporativomultiservicios.com/api/get_estaciones/'+id,
+            url: 'https://apinomina.softcodersteam.com/api/get_estaciones/'+id,
             dataType: "json",
             success: function(data){
                 $("#select_estacion").html("");
